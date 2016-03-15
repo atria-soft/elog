@@ -30,7 +30,8 @@ def create(target, module_name):
 	# add the file to compile:
 	my_module.add_src_file([
 		'elog/debug.cpp',
-		'elog/log.cpp'
+		'elog/log.cpp',
+		'elog/elog.cpp'
 		])
 	
 	if target.name=="IOs":
@@ -38,6 +39,7 @@ def create(target, module_name):
 	
 	my_module.add_header_file([
 		'elog/log.h',
+		'elog/elog.h'
 		])
 	
 	if target.config["mode"] == "debug":
