@@ -1,4 +1,4 @@
-/**
+/** @file
  * @author Edouard DUPIN
  * 
  * @copyright 2011, Edouard DUPIN, all right reserved
@@ -11,6 +11,10 @@
 #include <assert.h>
 
 namespace elog {
+	/**
+	 * @brief Get local id of the library
+	 * @return Unique ID of the library
+	 */
 	int32_t getLogId();
 };
 

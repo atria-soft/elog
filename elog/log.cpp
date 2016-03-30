@@ -1,4 +1,4 @@
-/**
+/** @file
  * @author Edouard DUPIN
  * 
  * @copyright 2011, Edouard DUPIN, all right reserved
@@ -169,22 +169,22 @@ std::vector<std::string> elog::getListInstance() {
 	return out;
 }
 
-void elog::logStream(int32_t _id, int32_t _level, int32_t _ligne, const char* _className, const char* _funcName, const std::ostream& _log) {
+void elog::logStream(int32_t _id, int32_t _level, int32_t _ligne, const char* _funcName, const std::ostream& _log) {
 	std::ostringstream oss;
 	oss << _log.rdbuf();
 	std::string sss =oss.str();
-	elog::logChar(_id, _level, _ligne, _className, _funcName, sss.c_str());
+	elog::logChar(_id, _level, _ligne, _funcName, sss.c_str());
 }
 
 void elog::logChar1(int32_t _id, int32_t _level, const char* _log) {
-	elog::logChar(_id, _level, -1, nullptr, nullptr, _log);
+	elog::logChar(_id, _level, -1, nullptr, _log);
 }
 
 void elog::logStream1(int32_t _id, int32_t _level, const std::ostream& _log) {
 	std::ostringstream oss;
 	oss << _log.rdbuf();
 	std::string sss =oss.str();
-	elog::logChar(_id, _level, -1, nullptr, nullptr, sss.c_str());
+	elog::logChar(_id, _level, -1, nullptr, sss.c_str());
 }
 
 static bool& getColor() {
@@ -292,7 +292,7 @@ static void getDisplayTime(char* data) {
 
 #define LENGHT_MAX_LOG (2048)
 
-void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _className, const char* _funcName, const char* _log) {
+void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _funcName, const char* _log) {
 	static std::mutex g_lock;
 	char handle[LENGHT_MAX_LOG] = "";
 	memset(handle, ' ', LENGHT_MAX_LOG);
@@ -416,37 +416,33 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _cla
 		int32_t len = strlen(handle);
 		char tmpName[1024];
 		char *tmpPointer = tmpName;
-		#ifndef __TARGET_OS__Android
-		if (_className != nullptr) {
-			snprintf(tmpPointer, 1024, "%s::", _className);
-			tmpPointer = tmpPointer+strlen(tmpPointer);
-		}
-		#endif
 		if (_funcName != nullptr) {
-			#if defined(__TARGET_OS__Android)
-				// cleen for android :
-				char* startPos = strchr(_funcName, ' ');
-				char* stopPos = strchr(_funcName, '(');
-				if (startPos != nullptr) {
-					if (stopPos != nullptr) {
-						if(stopPos < startPos) {
-							snprintf(tmpPointer, std::min(1024, int32_t(stopPos-_funcName)), "%s", _funcName);
-						} else {
-							snprintf(tmpPointer, std::min(1024, int32_t(stopPos-startPos)), "%s", startPos+1);
-						}
+			// cleen for android :
+			char* startPos = strchr((char*)_funcName, ' ');
+			char* stopPos = strchr((char*)_funcName, '(');
+			if (startPos != nullptr) {
+				if (stopPos != nullptr) {
+					char* startPos2 = strchr(startPos+1, ' ');
+					while (    startPos2 != nullptr
+					        && startPos2 < stopPos) {
+						startPos = startPos2;
+						startPos2 = strchr(startPos+1, ' ');
+					}
+					if(uint64_t(stopPos) < uint64_t(startPos)) {
+						snprintf(tmpPointer, std::min(uint64_t(1024), uint64_t(stopPos)-uint64_t(_funcName)), "%s", _funcName);
 					} else {
-						snprintf(tmpPointer, 1024, "%s", startPos);
+						snprintf(tmpPointer, std::min(uint64_t(1024), uint64_t(stopPos)-uint64_t(startPos)), "%s", startPos+1);
 					}
 				} else {
-					if (stopPos != nullptr) {
-						snprintf(tmpPointer, std::min(1024, int32_t(stopPos-_funcName)), "%s", _funcName);
-					} else {
-						snprintf(tmpPointer, 1024, "%s", _funcName);
-					}
+					snprintf(tmpPointer, 1024, "%s", startPos);
 				}
-			#else
-				snprintf(tmpPointer, 1024, "%s", _funcName);
-			#endif
+			} else {
+				if (stopPos != nullptr) {
+					snprintf(tmpPointer, std::min(uint64_t(1024), uint64_t(stopPos)-uint64_t(_funcName)+1), "%s", _funcName);
+				} else {
+					snprintf(tmpPointer, 1024, "%s", _funcName);
+				}
+			}
 			tmpPointer = tmpPointer+strlen(tmpPointer);
 		}
 		size_t lenFunc = strlen(tmpName);

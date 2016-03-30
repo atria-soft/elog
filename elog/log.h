@@ -1,4 +1,4 @@
-/**
+/** @file
  * @author Edouard DUPIN
  * 
  * @copyright 2011, Edouard DUPIN, all right reserved
@@ -34,11 +34,14 @@ namespace elog {
 	/**
 	 * @brief Set the log level of a specific instance
 	 * @param[in] _name Name of the intance
-	 * @param[in] _id Id of the intance
 	 * @param[in] _level New level to set on the instance
 	 */
 	void setLevel(const std::string& _name, enum level _level);
-	//! @previous
+	/**
+	 * @brief Set the log level of a specific instance
+	 * @param[in] _id Id of the intance
+	 * @param[in] _level New level to set on the instance
+	 */
 	void setLevel(int32_t _id, enum level _level);
 	/**
 	 * @brief Set global debug level
@@ -96,27 +99,40 @@ namespace elog {
 	 * @param[in] _id Id of the instance type
 	 * @param[in] _level Level debug
 	 * @param[in] _ligne Line of the debug
-	 * @param[in] _className Class name of the debug
-	 * @param[in] _funcName Function name for debug
+	 * @param[in] _funcName Function name for debug (compleate decorate signature)
 	 * @param[in] _log Stream to log
 	 */
-	void logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _className, const char* _funcName, const char* _log);
-	//! @previous
-	void logStream(int32_t _id, int32_t _level, int32_t _ligne, const char* _className, const char* _funcName, const std::ostream& _log);
-	//! @previous
+	void logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _funcName, const char* _log);
+	/**
+	 * @brief Call log to display
+	 * @param[in] _id Id of the instance type
+	 * @param[in] _level Level debug
+	 * @param[in] _ligne Line of the debug
+	 * @param[in] _funcName Function name for debug (compleate decorate signature)
+	 * @param[in] _log Stream to log
+	 */
+	void logStream(int32_t _id, int32_t _level, int32_t _ligne, const char* _funcName, const std::ostream& _log);
+	/**
+	 * @brief Call log to display
+	 * @param[in] _id Id of the instance type
+	 * @param[in] _level Level debug
+	 * @param[in] _log Stream to log
+	 */
 	void logChar1(int32_t _id, int32_t _level, const char* _log);
-	//! @previous
+	/**
+	 * @brief Call log to display
+	 * @param[in] _id Id of the instance type
+	 * @param[in] _level Level debug
+	 * @param[in] _log Stream to log
+	 */
 	void logStream1(int32_t _id, int32_t _level, const std::ostream& _log);
 	/**
 	 * @brief Display the current backtrace
 	 * @param[in] _breakAtEnd assert program when backtrace is printed
+	 * @param[in] _removeElement Number of element remove in the stack before display (permit to remove log function call)
 	 */
 	void displayBacktrace(bool _breakAtEnd = false, int32_t _removeElement=0);
 };
-#ifdef __class__
-	#undef  __class__
-#endif
-#define __class__ (nullptr)
 
 // generic define for all logs::
 #define ELOG_BASE(logId,info,data) \
@@ -125,6 +141,6 @@ namespace elog {
 			std::stringbuf sb; \
 			std::ostream tmpStream(&sb); \
 			tmpStream << data; \
-			elog::logStream(logId, info, __LINE__, __class__, __func__, tmpStream); \
+			elog::logStream(logId, info, __LINE__, __PRETTY_FUNCTION__, tmpStream); \
 		} \
 	} while(0)
