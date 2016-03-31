@@ -18,7 +18,7 @@ namespace elog {
 	int32_t getLogId();
 };
 
-#define ELOG_BASIC(info,data) ELOG_BASE(elog::getLogId(),info,data)
+#define ELOG_BASIC(info,data)    ELOG_BASE(elog::getLogId(),info,data)
 
 #define ELOG_PRINT(data)         ELOG_BASIC(-1, data)
 #define ELOG_CRITICAL(data)      ELOG_BASIC(1, data)

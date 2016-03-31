@@ -8,7 +8,9 @@
 #pragma once
 
 #include <string>
-
+/**
+ * @brief basic namespace of the elog library. (it might contain all the elog fuctions without macro)
+ */
 namespace elog {
 	/**
 	 * @brief Initialize elog

@@ -70,7 +70,7 @@
 #endif
 
 #ifdef DEBUG
-	#define DEFAULT_LOG_LEVEL elog::logLevelInfo
+	#define DEFAULT_LOG_LEVEL elog::level_info
 	#define DEFAULT_LOG_COLOR true
 	#define DEFAULT_LOG_LINE true
 	#define DEFAULT_LOG_THREAD_ID true
@@ -79,7 +79,7 @@
 	#define DEFAULT_LOG_TIME true
 	#define DEFAULT_LOG_LIB_NAME true
 #else
-	#define DEFAULT_LOG_LEVEL elog::logLevelNone
+	#define DEFAULT_LOG_LEVEL elog::level_none
 	#define DEFAULT_LOG_COLOR false
 	#define DEFAULT_LOG_LINE false
 	#define DEFAULT_LOG_THREAD_ID false
@@ -303,25 +303,25 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 			default:
 				// nothing to do ...
 				break;
-			case logLevelCritical:
+			case elog::level_critical:
 				strcat(pointer, ETK_BASH_COLOR_BOLD_RED);
 				break;
-			case logLevelError:
+			case elog::level_error:
 				strcat(pointer, ETK_BASH_COLOR_RED);
 				break;
-			case logLevelWarning:
+			case elog::level_warning:
 				strcat(pointer, ETK_BASH_COLOR_MAGENTA);
 				break;
-			case logLevelInfo:
+			case elog::level_info:
 				strcat(pointer, ETK_BASH_COLOR_CYAN);
 				break;
-			case logLevelDebug:
+			case elog::level_debug:
 				strcat(pointer, ETK_BASH_COLOR_YELLOW);
 				break;
-			case logLevelVerbose:
+			case elog::level_verbose:
 				strcat(pointer, ETK_BASH_COLOR_WHITE);
 				break;
-			case logLevelPrint:
+			case elog::level_print:
 				strcat(pointer, ETK_BASH_COLOR_WHITE);
 				break;
 		}
@@ -336,25 +336,25 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 			default:
 				strcat(pointer, "[?] ");
 				break;
-			case logLevelPrint:
+			case elog::level_print:
 				strcat(pointer, "[P] ");
 				break;
-			case logLevelCritical:
+			case elog::level_critical:
 				strcat(pointer, "[C] ");
 				break;
-			case logLevelError:
+			case elog::level_error:
 				strcat(pointer, "[E] ");
 				break;
-			case logLevelWarning:
+			case elog::level_warning:
 				strcat(pointer, "[W] ");
 				break;
-			case logLevelInfo:
+			case elog::level_info:
 				strcat(pointer, "[I] ");
 				break;
-			case logLevelDebug:
+			case elog::level_debug:
 				strcat(pointer, "[D] ");
 				break;
-			case logLevelVerbose:
+			case elog::level_verbose:
 				strcat(pointer, "[V] ");
 				break;
 		}
@@ -477,30 +477,29 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 	
 	g_lock.lock();
 	#if defined(__TARGET_OS__Android)
-		// TODO : Set package name instead of ewol ...
 		switch(_level) {
 			default:
 				__android_log_print(ANDROID_LOG_VERBOSE, "EWOL", "%s", handle);
 				break;
-			case logLevelPrint:
+			case elog::level_print:
 				__android_log_print(ANDROID_LOG_INFO, "EWOL", "%s", handle);
 				break;
-			case logLevelCritical:
+			case elog::level_critical:
 				__android_log_print(ANDROID_LOG_FATAL, "EWOL", "%s", handle);
 				break;
-			case logLevelError:
+			case elog::level_error:
 				__android_log_print(ANDROID_LOG_ERROR, "EWOL", "%s", handle);
 				break;
-			case logLevelWarning:
+			case elog::level_warning:
 				__android_log_print(ANDROID_LOG_WARN, "EWOL", "%s", handle);
 				break;
-			case logLevelInfo:
+			case elog::level_info:
 				__android_log_print(ANDROID_LOG_INFO, "EWOL", "%s", handle);
 				break;
-			case logLevelDebug:
+			case elog::level_debug:
 				__android_log_print(ANDROID_LOG_DEBUG, "EWOL", "%s", handle);
 				break;
-			case logLevelVerbose:
+			case elog::level_verbose:
 				__android_log_print(ANDROID_LOG_VERBOSE, "EWOL", "%s", handle);
 				break;
 		}
@@ -510,7 +509,7 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 		std::cout << handle << std::endl;
 	#endif
 	g_lock.unlock();
-	if (_level == logLevelCritical) {
+	if (_level == level_critical) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(700));
 		displayBacktrace(true, 2);
 	}

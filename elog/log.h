@@ -16,14 +16,14 @@ namespace elog {
 	 * @brief Log level is a simple list of all log availlable. This enum is used when setting a log and when user chose the level of log displayed.
 	 */
 	enum level {
-		logLevelPrint = -1, //!< basic print for Help or result (never filtered)
-		logLevelNone = 0, //!< no display requested
-		logLevelCritical = 1, //!< Display only critical logs (note that critical generally assert with a backtrace (when we can))
-		logLevelError = 2, //!< Display Error and critical logs
-		logLevelWarning = 3, //!< Display log critical to warning
-		logLevelInfo = 4, //!< Display log critical to information (removed in release mode)
-		logLevelDebug = 5, //!< Display log critical to debug (removed in release mode)
-		logLevelVerbose = 6 //!< Display all logs (removed in release and debug mode)
+		level_print = -1, //!< basic print for Help or result (never filtered)
+		level_none = 0, //!< no display requested
+		level_critical = 1, //!< Display only critical logs (note that critical generally assert with a backtrace (when we can))
+		level_error = 2, //!< Display Error and critical logs
+		level_warning = 3, //!< Display log critical to warning
+		level_info = 4, //!< Display log critical to information (removed in release mode)
+		level_debug = 5, //!< Display log critical to debug (removed in release mode)
+		level_verbose = 6 //!< Display all logs (removed in release and debug mode)
 	};
 	/**
 	 * @brief Register an element in the log system
@@ -36,18 +36,18 @@ namespace elog {
 	 * @param[in] _name Name of the intance
 	 * @param[in] _level New level to set on the instance
 	 */
-	void setLevel(const std::string& _name, enum level _level);
+	void setLevel(const std::string& _name, enum elog::level _level);
 	/**
 	 * @brief Set the log level of a specific instance
 	 * @param[in] _id Id of the intance
 	 * @param[in] _level New level to set on the instance
 	 */
-	void setLevel(int32_t _id, enum level _level);
+	void setLevel(int32_t _id, enum elog::level _level);
 	/**
 	 * @brief Set global debug level
 	 * @param[in] _level New level to set on the instance
 	 */
-	void setLevel(enum level _level);
+	void setLevel(enum elog::level _level);
 	/**
 	 * @brief Get the current level of debug for a specific intance
 	 * @param[in] _id Id Of the intance
@@ -134,7 +134,12 @@ namespace elog {
 	void displayBacktrace(bool _breakAtEnd = false, int32_t _removeElement=0);
 };
 
-// generic define for all logs::
+/**
+ * @brief Basic macro of all logs macros
+ * @param[in] logId Id of the library that log
+ * @param[in] info Log level of this log: elog::level
+ * @param[in] data Stream separaated with "<<" convertible in std::ostream
+ */
 #define ELOG_BASE(logId,info,data) \
 	do { \
 		if (info <= elog::getLevel(logId)) { \

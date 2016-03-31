@@ -12,22 +12,22 @@
 
 static elog::level getLogLevel(const std::string& _value) {
 	if (_value == "0") {
-		return elog::logLevelNone;
+		return elog::level_none;
 	} else if (_value == "1") {
-		return elog::logLevelCritical;
+		return elog::level_critical;
 	} else if (_value == "2") {
-		return elog::logLevelError;
+		return elog::level_error;
 	} else if (_value == "3") {
-		return elog::logLevelWarning;
+		return elog::level_warning;
 	} else if (_value == "4") {
-		return elog::logLevelInfo;
+		return elog::level_info;
 	} else if (_value == "5") {
-		return elog::logLevelDebug;
+		return elog::level_debug;
 	} else if (_value == "6") {
-		return elog::logLevelVerbose;
+		return elog::level_verbose;
 	}
 	ELOG_ERROR("Unknow log level : " << _value);
-	return elog::logLevelVerbose;
+	return elog::level_verbose;
 }
 
 static bool startWith(const std::string& _obj, const std::string& _val) {
@@ -73,7 +73,7 @@ void elog::init(int _argc, const char** _argv) {
 		} else if (startWith(data, "--elog-no-color")) {
 			elog::setColor(false);
 		} else if (startWith(data, "--elog-config=")) {
-			std::string value(data.begin()+17, data.end());
+			std::string value(data.begin()+14, data.end());
 			elog::setTime(false);
 			elog::setLine(false);
 			elog::setFunction(false);
@@ -109,7 +109,7 @@ void elog::init(int _argc, const char** _argv) {
 		            || data == "--help") {
 			ELOG_PRINT("elog - help : ");
 			ELOG_PRINT("    " << _argv[0] << " [options]");
-			ELOG_PRINT("        --elog-level=      Change the default log level (set all Log lovel):");
+			ELOG_PRINT("        --elog-level=      Change the default log level (set all Log level):");
 			ELOG_PRINT("            0: debug None (default in release)");
 			ELOG_PRINT("            1: debug Critical");
 			ELOG_PRINT("            2: debug Error");
@@ -124,11 +124,13 @@ void elog::init(int _argc, const char** _argv) {
 			ELOG_PRINT("        --elog-no-color    Disable color in log (default in Linux/release and Other)");
 			ELOG_PRINT("        --elog-config=     Configure the Log interface");
 			ELOG_PRINT("            t: diplay time");
-			ELOG_PRINT("            T: diplay thread id");
-			ELOG_PRINT("            N: diplay thread name");
+			#ifdef ELOG_BUILD_ETHREAD
+				ELOG_PRINT("            T: diplay thread id");
+				ELOG_PRINT("            N: diplay thread name");
+			#endif
 			ELOG_PRINT("            L: diplay line number");
 			ELOG_PRINT("            l: diplay lib name");
-			ELOG_PRINT("            f: diplay fundtion name");
+			ELOG_PRINT("            f: diplay function name");
 			ELOG_PRINT("        -h/--help: this help");
 			ELOG_PRINT("    example:");
 			ELOG_PRINT("        " << _argv[0] << " --elog-color --elog-level=2 --elog-lib=etk:5 --elog-lib=appl:6 --elog-config=NLlf");
