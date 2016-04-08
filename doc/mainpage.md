@@ -1,13 +1,15 @@
 Elog library                                {#mainpage}
 ============
 
-What is ELOG?
--------------
+@tableofcontents
+
+What is ELOG?                              {#elog_mainpage_what}
+=============
 
 ELOG, or [**EWOL**](http://atria-soft.github.io/ewol) Logger, is a simple wrapper to concataine log with a simple basic macro ELOG_BASE().
 
-Where can I use it?
--------------------
+Where can I use it?                              {#elog_mainpage_where}
+===================
 
 Everywhere! EWOL is cross-platform devolopped to support bases OS:
 - Linux (X11) (mouse)
@@ -16,20 +18,20 @@ Everywhere! EWOL is cross-platform devolopped to support bases OS:
 - Android (mouse + touch)
 - IOs (touch)
 
-What languages are supported?
------------------------------
+What languages are supported?                              {#elog_mainpage_language}
+=============================
 
 EWOL is written in C++
 
-Are there any licensing restrictions?
--------------------------------------
+Are there any licensing restrictions?                              {#elog_mainpage_restriction}
+=====================================
 
-EWOL is **FREE software** and //all sub-library are FREE and staticly linkable !!!//
+EWOL is **FREE software** and _all sub-library are FREE and staticly linkable !!!_
 
 We have no dependency expected generic lib C++ (STL or CXX)
 
-License (APACHE 2)
-------------------
+License (APACHE 2)                              {#elog_mainpage_license}
+==================
 
 Copyright elog Edouard DUPIN
 
@@ -45,9 +47,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Main documentation:
--------------------
+Other pages                              {#elog_mainpage_sub_page}
+===========
 
-@ref elog_tutorial
+  - @ref elog_build
+  - @ref elog_tutorial
+    * @ref elog_tutorial_01
+    * @ref elog_tutorial_02
+    * @ref elog_tutorial_03
+  - [**ewol coding style**](http://atria-soft.github.io/ewol/ewol_coding_style.html)
 
-[**ewol coding style**](http://atria-soft.github.io/ewol/ewol_coding_style.html)

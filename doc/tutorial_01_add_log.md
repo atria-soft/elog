@@ -1,6 +1,8 @@
 Elog Tutorial: Add some Log (using)                                {#elog_tutorial_01}
 ===================================
 
+@tableofcontents
+
 You might not use the log directly.
 The reson is simple:
 - It is designed to be replaced by an other log library.
@@ -8,8 +10,8 @@ The reson is simple:
 This permit you to use custom log library just replacing Macro and basic functions
 
 
-Declaring the list of macro
----------------------------
+Declaring the list of macro                                         {#elog_tutorial_01_declaration}
+===========================
 
 
 **debug.h**
@@ -69,8 +71,8 @@ int main(int _argc, const char *_argv[]) {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Using it
---------
+Using it                                                      {#elog_tutorial_01_using_it}
+========
 
 You just need to call the macro whe you want to add debug log:
 
@@ -80,10 +82,10 @@ APPL_INFO("Hello, how are you?");
 
 
 Specification of logs
----------------------
+=====================
 
-- *_CRITICAL(***); This will log the data and asert just after (display backtrace if possible)
-- *_PRINT(***); display on console (can not be removed with the log-level)
+  - *_CRITICAL(***); This will log the data and asert just after (display backtrace if possible)
+  - *_PRINT(***); display on console (can not be removed with the log-level)
 
 
 
