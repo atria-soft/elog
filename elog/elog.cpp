@@ -67,6 +67,7 @@ void elog::init(int _argc, const char** _argv) {
 	for (int32_t iii=0; iii<_argc ; ++iii) {
 		std::string data = _argv[iii];
 		if (startWith(data, "--elog-level=")) {
+			ELOG_INFO("Change global level at " << getLogLevel(std::string(data.begin()+13, data.end())));
 			elog::setLevel(getLogLevel(std::string(data.begin()+13, data.end())));
 		} else if (startWith(data, "--elog-color")) {
 			elog::setColor(true);
@@ -98,12 +99,19 @@ void elog::init(int _argc, const char** _argv) {
 				}
 			}
 		} else if (startWith(data, "--elog-lib=")) {
-			std::string value(data.begin()+14, data.end());
-			std::vector<std::string> list = split(value, ':');
+			std::string value(data.begin()+11, data.end());
+			std::vector<std::string> list = split(value, '/');
 			if (list.size() != 2) {
-				ELOG_ERROR("Can not set the --elog-lib= with value='" << value << "' not formated name:X");
-				continue;
+				list = split(value, ':');
+				if (list.size() != 2) {
+					list = split(value, '+');
+					if (list.size() != 2) {
+						ELOG_ERROR("Can not set the --elog-lib= with value='" << value << "' not formated name:X or name/X or name+X");
+						continue;
+					}
+				}
 			}
+			ELOG_INFO("Change level of '" << list[0] << "' at " << getLogLevel(list[1]));
 			elog::setLevel(list[0], getLogLevel(list[1]));
 		} else if (    data == "-h"
 		            || data == "--help") {
@@ -120,6 +128,7 @@ void elog::init(int _argc, const char** _argv) {
 			ELOG_PRINT("        --elog-lib=name:X  Set a library specific level:");
 			ELOG_PRINT("            name  Name of the library");
 			ELOG_PRINT("            X     Log level to set [0..6]");
+			ELOG_PRINT("            note: ':' can be replace with '/' or '+'");
 			ELOG_PRINT("        --elog-color       Enable color in log (default in Linux/debug)");
 			ELOG_PRINT("        --elog-no-color    Disable color in log (default in Linux/release and Other)");
 			ELOG_PRINT("        --elog-config=     Configure the Log interface");
