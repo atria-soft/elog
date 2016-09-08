@@ -26,7 +26,7 @@ def get_version():
 
 def create(target, module_name):
 	my_module = module.Module(__file__, module_name, get_type())
-	my_module.add_extra_compile_flags()
+	my_module.add_extra_flags()
 	# add the file to compile:
 	my_module.add_src_file([
 		'elog/debug.cpp',
@@ -34,7 +34,7 @@ def create(target, module_name):
 		'elog/elog.cpp'
 		])
 	
-	if target.name=="IOs":
+	if "IOs" in target.get_type():
 		my_module.add_src_file('etk/logIOs.m')
 	
 	my_module.add_header_file([
@@ -42,32 +42,33 @@ def create(target, module_name):
 		'elog/elog.h'
 		])
 	
-	if target.config["mode"] == "debug":
+	if target.get_mode() == "debug":
 		# Bor backtrace display :
-		if     target.name != "Windows" \
-		   and target.name != "MacOs" \
-		   and target.name != "IOs":
+		if     "Windows" not in target.get_type() \
+		   and "MacOs" not in target.get_type() \
+		   and "IOs" not in target.get_type():
 			# TODO : check if it is really needed ...
-			my_module.add_export_flag('link', [
+			my_module.add_flag('link', [
 				'-ldl',
-				'-rdynamic'])
-		elif target.name != "Windows":
-			my_module.add_export_flag('link', [
-				'-ldl'])
+				'-rdynamic'],
+				export=True)
+		elif "Windows" not in target.get_type():
+			my_module.add_flag('link', [
+				'-ldl'],
+				export=True)
 	# build in C++ mode
 	my_module.compile_version("c++", 2011)
 	# add dependency of the generic C++ library:
-	my_module.add_module_depend('cxx')
-	my_module.add_optionnal_module_depend('ethread', ["c++", "-DELOG_BUILD_ETHREAD"])
+	my_module.add_depend('cxx')
+	my_module.add_optionnal_depend('ethread', ["c++", "-DELOG_BUILD_ETHREAD"])
 	
-	if target.name=="Windows":
+	if "Windows" in target.get_type():
 		pass
-	elif target.name=="Android":
-		my_module.add_module_depend("SDK")
+	elif "Android" in target.get_type():
+		my_module.add_depend("SDK")
 		pass
 	else:
-		#TODO : Set it in a generic include system
-		my_module.add_export_flag('link-lib', "pthread")
+		my_module.add_depend("pthread")
 	
 	my_module.add_path(tools.get_current_path(__file__))
 	return my_module
