@@ -35,7 +35,7 @@ def create(target, module_name):
 		])
 	
 	if "IOs" in target.get_type():
-		my_module.add_src_file('etk/logIOs.m')
+		my_module.add_src_file('elog/logIOs.m')
 	
 	my_module.add_header_file([
 		'elog/log.h',
