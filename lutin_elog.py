@@ -58,6 +58,7 @@ def create(target, module_name):
 				export=True)
 	# build in C++ mode
 	my_module.compile_version("c++", 2011)
+	my_module.compile_version("c", 1999)
 	# add dependency of the generic C++ library:
 	my_module.add_depend('cxx')
 	my_module.add_optionnal_depend('ethread', ["c++", "-DELOG_BUILD_ETHREAD"])
