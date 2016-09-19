@@ -71,7 +71,11 @@
 
 #ifdef DEBUG
 	#define DEFAULT_LOG_LEVEL elog::level_info
-	#define DEFAULT_LOG_COLOR true
+	#if defined(__TARGET_OS__Windows)
+		#define DEFAULT_LOG_COLOR false
+	#else
+		#define DEFAULT_LOG_COLOR true
+	#endif
 	#define DEFAULT_LOG_LINE true
 	#define DEFAULT_LOG_THREAD_ID true
 	#define DEFAULT_LOG_THREAD_NAME true
@@ -505,6 +509,22 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 		}
 	#elif defined(__TARGET_OS__IOs)
 		iosNSLog(handle);
+	#elif defined(__TARGET_OS__Windows)
+		{
+			static FILE* fileNode = fopen("log.txt", "w");
+			*pointer++ = '\n';
+			*pointer = '\0';
+			fprintf(fileNode, handle);
+			switch(_level) {
+				default:
+					break;
+				case elog::level_critical:
+				case elog::level_error:
+				case elog::level_warning:
+					fflush(fileNode);
+					break;
+			}
+		}
 	#else
 		std::cout << handle << std::endl;
 	#endif
