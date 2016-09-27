@@ -16,76 +16,55 @@ Declaring the list of macro                                         {#elog_tutor
 
 **debug.h**
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.c}
-#pragma once
-
-#include <elog/log.h>
-
-namespace appl {
-	int32_t getLogId();
-};
-#define APPL_BASE(info,data) ELOG_BASE(appl::getLogId(),info,data)
-
-#define APPL_PRINT(data)         APPL_BASE(-1, data)
-#define APPL_CRITICAL(data)      APPL_BASE(1, data)
-#define APPL_ERROR(data)         APPL_BASE(2, data)
-#define APPL_WARNING(data)       APPL_BASE(3, data)
-#ifdef DEBUG
-	#define APPL_INFO(data)          APPL_BASE(4, data)
-	#define APPL_DEBUG(data)         APPL_BASE(5, data)
-	#define APPL_VERBOSE(data)       APPL_BASE(6, data)
-	#define APPL_TODO(data)          APPL_BASE(4, "TODO : " << data)
-#else
-	#define APPL_INFO(data)          do { } while(false)
-	#define APPL_DEBUG(data)         do { } while(false)
-	#define APPL_VERBOSE(data)       do { } while(false)
-	#define APPL_TODO(data)          do { } while(false)
-#endif
-
-#define APPL_ASSERT(cond,data) \
-	do { \
-		if (!(cond)) { \
-			APPL_CRITICAL(data); \
-			assert(!#cond); \
-		} \
-	} while (0)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+@include sample/debug.h
 
 **debug.cpp**
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.c}
-#include "debug.h"
+@include sample/debug.cpp
 
-int32_t appl::getLogId() {
-	static int32_t g_val = elog::registerInstance("your application name");
-	return g_val;
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - on your main application:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.c}
-#include <elog/elog.h>
-int main(int _argc, const char *_argv[]) {
-	elog::init(_argc, _argv);
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+@snippet sample/main.cpp elog_sample_main_include
+@snippet sample/main.cpp elog_sample_main_base
 
 Using it                                                      {#elog_tutorial_01_using_it}
 ========
 
 You just need to call the macro whe you want to add debug log:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.c}
-APPL_INFO("Hello, how are you?");
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+@snippet sample/main.cpp elog_sample_main_log
 
 
 Specification of logs
-=====================
+---------------------
 
   - *_CRITICAL(***); This will log the data and asert just after (display backtrace if possible)
   - *_PRINT(***); display on console (can not be removed with the log-level)
 
 
 
+
+Log in an external logger                                     {#elog_tutorial_01_external}
+=========================
+
+You must specify an external function that is receiving the logs:
+
+@snippet sample/main.cpp elog_sample_main_callback_DECLARATION
+
+Now you must connect it on the elog backend:
+
+@snippet sample/main.cpp elog_sample_main_callback_link
+
+```{.cpp}
+	elog::setCallbackLog(&myExternalLogCallback);
+```
+
+The full code of the callback:
+@snippet sample/main.cpp elog_sample_main_callback
+
+you can test the program:
+
+```{.sh}
+lutin -C -P -mdebug elog-sample?build?run:--elog-level=2
+```

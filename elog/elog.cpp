@@ -64,6 +64,12 @@ static std::vector<std::string> split(const std::string& _input, char _val) {
 
 void elog::init(int _argc, const char** _argv) {
 	ELOG_INFO("E-log system init (BEGIN)");
+	// retrive application Name:
+	std::string applName = _argv[0];
+	int lastSlash = applName.rfind('/');
+	applName = &applName[lastSlash+1];
+	// get name: applName
+	bool userSpecifyLogFile = false;
 	for (int32_t iii=0; iii<_argc ; ++iii) {
 		std::string data = _argv[iii];
 		if (startWith(data, "--elog-level=")) {
@@ -73,6 +79,14 @@ void elog::init(int _argc, const char** _argv) {
 			elog::setColor(true);
 		} else if (startWith(data, "--elog-no-color")) {
 			elog::setColor(false);
+		} else if (startWith(data, "--elog-file=")) {
+			std::string value(data.begin()+12, data.end());
+			if (value.size() == 0) {
+				elog::unsetLogInFile();
+			} else {
+				elog::setLogInFile(value);
+			}
+			userSpecifyLogFile = true;
 		} else if (startWith(data, "--elog-config=")) {
 			std::string value(data.begin()+14, data.end());
 			elog::setTime(false);
@@ -117,7 +131,7 @@ void elog::init(int _argc, const char** _argv) {
 		            || data == "--help") {
 			ELOG_PRINT("elog - help : ");
 			ELOG_PRINT("    " << _argv[0] << " [options]");
-			ELOG_PRINT("        --elog-level=      Change the default log level (set all Log level):");
+			ELOG_PRINT("        --elog-level=            Change the default log level (set all Log level):");
 			ELOG_PRINT("            0: debug None (default in release)");
 			ELOG_PRINT("            1: debug Critical");
 			ELOG_PRINT("            2: debug Error");
@@ -129,9 +143,10 @@ void elog::init(int _argc, const char** _argv) {
 			ELOG_PRINT("            name  Name of the library");
 			ELOG_PRINT("            X     Log level to set [0..6]");
 			ELOG_PRINT("            note: ':' can be replace with '/' or '+'");
-			ELOG_PRINT("        --elog-color       Enable color in log (default in Linux/debug)");
-			ELOG_PRINT("        --elog-no-color    Disable color in log (default in Linux/release and Other)");
-			ELOG_PRINT("        --elog-config=     Configure the Log interface");
+			ELOG_PRINT("        --elog-file=pathToFile   File to store the logs: (disable console logs)");
+			ELOG_PRINT("        --elog-color             Enable color in log (default in Linux/debug)");
+			ELOG_PRINT("        --elog-no-color          Disable color in log (default in Linux/release and Other)");
+			ELOG_PRINT("        --elog-config=           Configure the Log interface");
 			ELOG_PRINT("            t: diplay time");
 			#ifdef ELOG_BUILD_ETHREAD
 				ELOG_PRINT("            T: diplay thread id");
@@ -140,13 +155,30 @@ void elog::init(int _argc, const char** _argv) {
 			ELOG_PRINT("            L: diplay line number");
 			ELOG_PRINT("            l: diplay lib name");
 			ELOG_PRINT("            f: diplay function name");
-			ELOG_PRINT("        -h/--help: this help");
+			ELOG_PRINT("        -h/--help:               Dispplay this help");
 			ELOG_PRINT("    example:");
 			ELOG_PRINT("        " << _argv[0] << " --elog-color --elog-level=2 --elog-lib=etk:5 --elog-lib=appl:6 --elog-config=NLlf");
-		} else if (startWith(data, "--elog")) {
+		} else if (startWith(data, "--elog") == true) {
 			ELOG_ERROR("Can not parse the argument : '" << data << "'");
 		}
 	}
+	if (userSpecifyLogFile == false) {
+		#ifdef DEBUG
+			#if defined(__TARGET_OS__Windows)
+				elog::setLogInFile("log.txt");
+			#endif
+		#else
+			#if defined(__TARGET_OS__Linux)
+				//elog::setLogInFile("/var/log/elog_" +applName + ".log");
+				elog::setLogInFile("/tmp/elog_" +applName + ".log");
+			#elif defined(__TARGET_OS__MacOs)
+				elog::setLogInFile(applName + ".log");
+			#elif defined(__TARGET_OS__Windows)
+				elog::setLogInFile(applName + ".log");
+			#endif
+		#endif
+	}
+	
 	ELOG_INFO("E-LOG system init (END)");
 }
 

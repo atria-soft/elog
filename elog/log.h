@@ -10,10 +10,12 @@
 #include <sstream>
 #include <ostream>
 #include <vector>
+#include <functional>
 
 namespace elog {
 	/**
 	 * @brief Log level is a simple list of all log availlable. This enum is used when setting a log and when user chose the level of log displayed.
+	 * @note: I use a "enum" and not an "enum class" because it create some problem on the macro declaration (not easy to convert number in an "enum class"
 	 */
 	enum level {
 		level_print = -1, //!< basic print for Help or result (never filtered)
@@ -35,6 +37,9 @@ namespace elog {
 	 * @brief Set the log level of a specific instance
 	 * @param[in] _name Name of the intance
 	 * @param[in] _level New level to set on the instance
+	 * @code
+	 *   elog::setLevel("ewol", elog::level_critical);
+	 * @endcode
 	 */
 	void setLevel(const std::string& _name, enum elog::level _level);
 	/**
@@ -46,6 +51,9 @@ namespace elog {
 	/**
 	 * @brief Set global debug level
 	 * @param[in] _level New level to set on the instance
+	 * @code
+	 *   elog::setLevel(elog::level_verbose);
+	 * @endcode
 	 */
 	void setLevel(enum elog::level _level);
 	/**
@@ -132,6 +140,30 @@ namespace elog {
 	 * @param[in] _removeElement Number of element remove in the stack before display (permit to remove log function call)
 	 */
 	void displayBacktrace(bool _breakAtEnd = false, int32_t _removeElement=0);
+	/**
+	 * @brief function definition of an external log function
+	 * @param[in] _libName pounter on a string containing the library name
+	 * @param[in] _level Level of the log (can be filter with @ref setLevel)
+	 * @param[in] _ligne Line of the log
+	 * @param[in] _funcName Full function name: 'void etk::MyClass::functionName(...)'
+	 * @param[in] _log String containing the Log
+	 */
+	using callbackLog = std::function<void (const char* _libName, enum elog::level _level, int32_t _ligne, const char* _funcName, const char* _log)>;
+	/**
+	 * @brief Set a callback to display all log in an other framework
+	 * @param[in] _callback Function to call when log arrive
+	 */
+	void setCallbackLog(const elog::callbackLog& _callback);
+	/**
+	 * @brief Set log done in a specific file
+	 * @param[in] _filename Name of the file to log (if not set the log system select alone the log file)
+	 * @note in release the log is automatically store in a file in the system. (windows log is done in file automatically)
+	 */
+	void setLogInFile(const std::string& _filename="");
+	/**
+	 * @brief Disable log in a file
+	 */
+	void unsetLogInFile();
 };
 
 /**

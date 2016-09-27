@@ -83,7 +83,7 @@
 	#define DEFAULT_LOG_TIME true
 	#define DEFAULT_LOG_LIB_NAME true
 #else
-	#define DEFAULT_LOG_LEVEL elog::level_none
+	#define DEFAULT_LOG_LEVEL elog::level_error
 	#define DEFAULT_LOG_COLOR false
 	#define DEFAULT_LOG_LINE false
 	#define DEFAULT_LOG_THREAD_ID false
@@ -262,6 +262,45 @@ static void getDisplayTime(char* data) {
 #endif
 }
 
+static std::mutex g_lock;
+static elog::callbackLog callbackUserLog(nullptr);
+
+static FILE*& getLogFile() {
+	static FILE* file=nullptr;
+	return file;
+}
+
+void elog::setLogInFile(const std::string& _filename) {
+	elog::unsetLogInFile();
+	ELOG_PRINT("Log in file: '" << _filename << "'");
+	g_lock.lock();
+	FILE*& file = getLogFile();
+	file = fopen(_filename.c_str(), "w");
+	g_lock.unlock();
+	if (file == nullptr) {
+		ELOG_ERROR("Can not open file: '" << _filename << "'");
+	}
+}
+
+void elog::unsetLogInFile() {
+	g_lock.lock();
+	FILE*& file = getLogFile();
+	// close file only if needed ...
+	if (file != nullptr) {
+		fflush(file);
+		fclose(file);
+		file = nullptr;
+	}
+	g_lock.unlock();
+}
+
+
+void elog::setCallbackLog(const elog::callbackLog& _callback) {
+	// TODO : Check atomicity ...
+	g_lock.lock();
+	callbackUserLog = _callback;
+	g_lock.unlock();
+}
 //regular colors
 #define ETK_BASH_COLOR_BLACK			"\e[0;30m"
 #define ETK_BASH_COLOR_RED				"\e[0;31m"
@@ -297,7 +336,19 @@ static void getDisplayTime(char* data) {
 #define LENGHT_MAX_LOG (2048)
 
 void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _funcName, const char* _log) {
-	static std::mutex g_lock;
+	// special callback mode:
+	if (callbackUserLog != nullptr) {
+		const char* libName = "";
+		if (_id >= 0) {
+			libName = getList()[_id].first.c_str();
+		}
+		g_lock.lock();
+		if (callbackUserLog != nullptr) {
+			callbackUserLog(libName, elog::level(_level), _ligne, _funcName, _log);
+		}
+		g_lock.unlock();
+		return;
+	}
 	char handle[LENGHT_MAX_LOG] = "";
 	memset(handle, ' ', LENGHT_MAX_LOG);
 	handle[0] = '\0';
@@ -480,6 +531,26 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 	}
 	
 	g_lock.lock();
+	{
+		FILE*& file = getLogFile();
+		// close file only if needed ...
+		if (file != nullptr) {
+			*pointer++ = '\n';
+			*pointer = '\0';
+			fprintf(file, handle);
+			switch(_level) {
+				default:
+					break;
+				case elog::level_critical:
+				case elog::level_error:
+					fflush(file);
+					break;
+			}
+			// if we log in file, we have no need to log otherwise ... just "tail -f log.txt"
+			g_lock.unlock();
+			return;
+		}
+	}
 	#if defined(__TARGET_OS__Android)
 		switch(_level) {
 			default:
@@ -509,22 +580,6 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 		}
 	#elif defined(__TARGET_OS__IOs)
 		iosNSLog(handle);
-	#elif defined(__TARGET_OS__Windows)
-		{
-			static FILE* fileNode = fopen("log.txt", "w");
-			*pointer++ = '\n';
-			*pointer = '\0';
-			fprintf(fileNode, handle);
-			switch(_level) {
-				default:
-					break;
-				case elog::level_critical:
-				case elog::level_error:
-				case elog::level_warning:
-					fflush(fileNode);
-					break;
-			}
-		}
 	#else
 		std::cout << handle << std::endl;
 	#endif
