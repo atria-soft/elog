@@ -6,17 +6,17 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <elog/log.h>
-#include <elog/debug.h>
+#include <elog/log.hpp>
+#include <elog/debug.hpp>
 #include <time.h>
 #include <mutex>
 #include <thread>
 #include <map>
 #include <inttypes.h>
 #ifdef ELOG_BUILD_ETHREAD
-	#include <ethread/tools.h>
+	#include <ethread/tools.hpp>
 #endif
-#include <elog/debug.h>
+#include <elog/debug.hpp>
 #include <string.h>
 #include <iostream>
 

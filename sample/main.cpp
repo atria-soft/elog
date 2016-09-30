@@ -6,8 +6,8 @@
  * @license APACHE v2.0 (see license file)
  */
 //! [elog_sample_main_include]
-#include "debug.h"
-#include <elog/elog.h>
+#include "debug.hpp"
+#include <elog/elog.hpp>
 //! [elog_sample_main_include]
 #include <iostream>
 

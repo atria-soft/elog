@@ -6,9 +6,9 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <elog/log.h>
-#include <elog/elog.h>
-#include <elog/debug.h>
+#include <elog/log.hpp>
+#include <elog/elog.hpp>
+#include <elog/debug.hpp>
 
 static elog::level getLogLevel(const std::string& _value) {
 	if (_value == "0") {

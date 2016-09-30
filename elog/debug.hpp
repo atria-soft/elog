@@ -7,7 +7,7 @@
  */
 #pragma once
 
-#include <elog/log.h>
+#include <elog/log.hpp>
 #include <assert.h>
 
 namespace elog {
