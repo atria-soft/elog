@@ -17,7 +17,7 @@
 	#include <ethread/tools.hpp>
 #endif
 #include <elog/debug.hpp>
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 #if defined(__TARGET_OS__Android)
