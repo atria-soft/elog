@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import lutin.module as module
+import lutin.debug as debug
 import lutin.tools as tools
 import lutin.debug as debug
 
@@ -25,8 +25,7 @@ def get_compagny_name():
 def get_maintainer():
 	return ["Mr DUPIN Edouard <yui.heero@gmail.com>"]
 
-def create(target, module_name):
-	my_module = module.Module(__file__, module_name, get_type())
+def configure(target, my_module):
 	my_module.add_src_file([
 		'test-debug/debug.cpp'
 		])
@@ -34,7 +33,7 @@ def create(target, module_name):
 		'test-debug/debug.hpp'
 		])
 	my_module.add_depend('etk')
-	my_module.add_path(tools.get_current_path(__file__))
-	return my_module
+	my_module.add_path(".")
+	return True
 
 

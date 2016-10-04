@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import lutin.module as module
+import lutin.debug as debug
 import lutin.tools as tools
 
 
@@ -27,18 +27,17 @@ def get_maintainer():
 def get_version():
 	return "version.txt"
 
-def create(target, module_name):
-	my_module = module.Module(__file__, module_name, get_type())
+def configure(target, my_module):
 	my_module.add_extra_flags()
 	# add the file to compile:
 	my_module.add_src_file([
-		'sample/debug.cpp',
-		'sample/main.cpp'
-		])
+	    'sample/debug.cpp',
+	    'sample/main.cpp'
+	    ])
 	# build in C++ mode
 	my_module.compile_version("c++", 2011)
 	my_module.add_depend('elog')
 	my_module.add_path('sample')
-	return my_module
+	return True
 
 

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import lutin.module as module
+import lutin.debug as debug
 import lutin.tools as tools
 
 
@@ -24,23 +24,22 @@ def get_maintainer():
 def get_version():
 	return "version.txt"
 
-def create(target, module_name):
-	my_module = module.Module(__file__, module_name, get_type())
+def configure(target, my_module):
 	my_module.add_extra_flags()
 	# add the file to compile:
 	my_module.add_src_file([
-		'elog/debug.cpp',
-		'elog/log.cpp',
-		'elog/elog.cpp'
-		])
+	    'elog/debug.cpp',
+	    'elog/log.cpp',
+	    'elog/elog.cpp'
+	    ])
 	
 	if "IOs" in target.get_type():
 		my_module.add_src_file('elog/logIOs.m')
 	
 	my_module.add_header_file([
-		'elog/log.hpp',
-		'elog/elog.hpp'
-		])
+	    'elog/log.hpp',
+	    'elog/elog.hpp'
+	    ])
 	
 	if target.get_mode() == "debug":
 		# Bor backtrace display :
@@ -71,7 +70,7 @@ def create(target, module_name):
 	else:
 		my_module.add_depend("pthread")
 	
-	my_module.add_path(tools.get_current_path(__file__))
-	return my_module
+	my_module.add_path(".")
+	return True
 
 
