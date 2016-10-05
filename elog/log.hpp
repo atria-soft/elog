@@ -103,6 +103,11 @@ namespace elog {
 	 */
 	void setLibName(bool _status);
 	/**
+	 * @brief Set back-trace display on Error log enable or disable.
+	 * @param[in] _status New value.
+	 */
+	void setBackTrace(bool _status);
+	/**
 	 * @brief Call log to display
 	 * @param[in] _id Id of the instance type
 	 * @param[in] _level Level debug

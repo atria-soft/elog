@@ -75,10 +75,12 @@ void elog::init(int _argc, const char** _argv) {
 		if (startWith(data, "--elog-level=")) {
 			ELOG_INFO("Change global level at " << getLogLevel(std::string(data.begin()+13, data.end())));
 			elog::setLevel(getLogLevel(std::string(data.begin()+13, data.end())));
-		} else if (startWith(data, "--elog-color")) {
+		} else if (data == "--elog-color") {
 			elog::setColor(true);
-		} else if (startWith(data, "--elog-no-color")) {
+		} else if (data == "--elog-no-color") {
 			elog::setColor(false);
+		} else if (data == "--elog-back-trace") {
+			elog::setBackTrace(true);
 		} else if (startWith(data, "--elog-file=")) {
 			std::string value(data.begin()+12, data.end());
 			if (value.size() == 0) {
@@ -146,6 +148,7 @@ void elog::init(int _argc, const char** _argv) {
 			ELOG_PRINT("        --elog-file=pathToFile   File to store the logs: (disable console logs)");
 			ELOG_PRINT("        --elog-color             Enable color in log (default in Linux/debug)");
 			ELOG_PRINT("        --elog-no-color          Disable color in log (default in Linux/release and Other)");
+			ELOG_PRINT("        --elog-back-trace        Enable back-trace when an error log level is generated (to get a fast debug)");
 			ELOG_PRINT("        --elog-config=           Configure the Log interface");
 			ELOG_PRINT("            t: diplay time");
 			#ifdef ELOG_BUILD_ETHREAD

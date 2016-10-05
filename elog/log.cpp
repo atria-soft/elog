@@ -36,7 +36,7 @@
 		void * trace[MAX_DEPTH];
 		int stack_depth = backtrace(trace, MAX_DEPTH);
 		
-		ELOG_ERROR("Back-trace : ");
+		ELOG_PRINT("Back-trace : ");
 		for (int32_t i = 1; i < stack_depth; i++) {
 			Dl_info dlinfo;
 			if(!dladdr(trace[i], &dlinfo)) {
@@ -49,8 +49,8 @@
 				symname = demangled;
 			}
 			if (_removeElement <= 0) {
-				ELOG_WARNING("  " << dlinfo.dli_fname << ": ");
-				ELOG_ERROR("        " << symname);
+				ELOG_PRINT("  " << dlinfo.dli_fname << ": ");
+				ELOG_PRINT("        " << symname);
 			}
 			_removeElement--;
 			if(demangled != nullptr) {
@@ -246,6 +246,14 @@ static bool& getLibName() {
 }
 void elog::setLibName(bool _status) {
 	getLibName() = _status;
+}
+
+static bool& getDisplayBackTrace() {
+	static bool g_val = false;
+	return g_val;
+}
+void elog::setBackTrace(bool _status) {
+	getDisplayBackTrace() = _status;
 }
 
 static void getDisplayTime(char* data) {
@@ -587,6 +595,11 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 	if (_level == level_critical) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(700));
 		displayBacktrace(true, 2);
+	}
+	// Display backtrace to facilitate the error problems
+	if (    _level == level_error
+	     && getDisplayBackTrace() == true) {
+		displayBacktrace(false, 2);
 	}
 }
 
