@@ -1,0 +1,1004 @@
+<!-- HTML header for doxygen 1.8.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- For Mobile Devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+        <meta name="generator" content="Doxygen 1.8.11"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <title>Elog: Etk log interface: elog Namespace Reference</title>
+        <!--<link href="tabs.css" rel="stylesheet" type="text/css"/>-->
+        <script type="text/javascript" src="dynsections.js"></script>
+        <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+        <link href="doxygen.css" rel="stylesheet" type="text/css" />
+        <link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="doxy-boot.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand">Elog: Etk log interface 0.4.0</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Main&nbsp;Page</a></li>
+                        <li><a href="pages.html">Related&nbsp;Pages</a></li>
+                        <li><a href="namespaces.html">Namespaces</a></li>
+                        <li><a href="annotated.html">Classes</a></li>
+                        <li><a href="files.html">Files</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Link-libs<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://HeeroYui.github.io/lutin">lutin</a></li>
+                                <li><a href="http://atria-soft.github.io/ewol">ewol</a></li>
+                                <li><a href="http://atria-soft.github.io/etk">etk</a></li>
+                                <li><a href="http://atria-soft.github.io/ejson">ejson</a></li>
+                                <li><a href="http://atria-soft.github.io/exml">exml</a></li>
+                                <li><a href="http://atria-soft.github.io/esvg">esvg</a></li>
+                                <li><a href="http://atria-soft.github.io/egami">egami</a></li>
+                                <li><a href="http://atria-soft.github.io/gale">gale</a></li>
+                                <li><a href="http://atria-soft.github.io/ege">ege</a></li>
+                                <li><a href="http://atria-soft.github.io/elog">elog</a></li>
+                                <li><a href="http://atria-soft.github.io/ememory">ememory</a></li>
+                                <li><a href="http://atria-soft.github.io/enet">enet</a></li>
+                                <li><a href="http://atria-soft.github.io/eproperty">eproperty</a></li>
+                                <li><a href="http://atria-soft.github.io/esignal">esignal</a></li>
+                                <li><a href="http://atria-soft.github.io/zeus">zeus</a></li>
+                                <li><a href="http://atria-soft.github.io/audio-ess">audio-ess</a></li>
+                                <li><a href="http://musicdsp.github.io/audio">audio</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-drain">audio-drain</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-orchestra">audio-orchestra</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-river">audio-river</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div id="search-box" class="input-group">
+                        <div class="input-group-btn">
+                            <button aria-expanded="false" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">All</a></li>
+                                <li><a href="#">Classes</a></li>
+                                <li><a href="#">Namespaces</a></li>
+                                <li><a href="#">Files</a></li>
+                                <li><a href="#">Functions</a></li>
+                                <li><a href="#">Variables</a></li>
+                                <li><a href="#">Typedefs</a></li>
+                                <li><a href="#">Enumerations</a></li>
+                                <li><a href="#">Enumerator</a></li>
+                                <li><a href="#">Friends</a></li>
+                                <li><a href="#">Macros</a></li>
+                                <li><a href="#">Pages</a></li>
+                            </ul>
+                        </div>
+                        <button id="search-close" type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                        <input id="search-field" class="form-control" accesskey="S" onkeydown="searchBox.OnSearchFieldChange(event);" placeholder="Search ..." type="text">
+                    </div>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+            <div class="content" id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 panel panel-default" style="padding-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li class="current"><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="namespaces.html"><span>Namespace&#160;List</span></a></li>
+      <li><a href="namespacemembers.html"><span>Namespace&#160;Members</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">elog Namespace Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a2f5d781d79bd79fcda8b94a212bcbbde"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a2f5d781d79bd79fcda8b94a212bcbbde">callbackLog</a> = std::function&lt; void(const char *_libName, enum <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a> _level, int32_t _ligne, const char *_funcName, const char *_log)&gt;</td></tr>
+<tr class="separator:a2f5d781d79bd79fcda8b94a212bcbbde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a2aac95a15381721219c16f6ff5b4fb89"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">level</a> { <br />
+&#160;&#160;<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89a93c9ecff62779bddcc1bc2e7fc5dd829">level_print</a> = -1, 
+<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89aeff8c0bec7329ce8b94597f6bd501354">level_none</a> = 0, 
+<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89a4c2b8e97dbaeda89eb1fbce53e691625">level_critical</a> = 1, 
+<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89add2b92a662d3e09201bfc37cf42f906c">level_error</a> = 2, 
+<br />
+&#160;&#160;<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89abe0c0f2534e916ba560a798d1392ce0c">level_warning</a> = 3, 
+<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89aec0f38e9cdb484718ef007a57628e021">level_info</a> = 4, 
+<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89a97d8804cb4c8776f67824ec0acf53efb">level_debug</a> = 5, 
+<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89adf726904a7486e61530282123dbd58cd">level_verbose</a> = 6
+<br />
+ }</td></tr>
+<tr class="separator:a2aac95a15381721219c16f6ff5b4fb89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a1005ac82c94e09b499d29b70a98cd5cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a1005ac82c94e09b499d29b70a98cd5cc">init</a> (int _argc, const char **_argv)</td></tr>
+<tr class="separator:a1005ac82c94e09b499d29b70a98cd5cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e40b0be74fd80765658df83f72a4e3e"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a7e40b0be74fd80765658df83f72a4e3e">registerInstance</a> (const std::string &amp;_name)</td></tr>
+<tr class="separator:a7e40b0be74fd80765658df83f72a4e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3afe4089acb36e88d7266c1ce85ddc7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a3afe4089acb36e88d7266c1ce85ddc7b">setLevel</a> (const std::string &amp;_name, enum <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a> _level)</td></tr>
+<tr class="separator:a3afe4089acb36e88d7266c1ce85ddc7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a423b95c78b78e98de35c8f176b9efbdc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a423b95c78b78e98de35c8f176b9efbdc">setLevel</a> (int32_t _id, enum <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a> _level)</td></tr>
+<tr class="separator:a423b95c78b78e98de35c8f176b9efbdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a600189d0be9885f63d651201ab0c3688"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a600189d0be9885f63d651201ab0c3688">setLevel</a> (enum <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a> _level)</td></tr>
+<tr class="separator:a600189d0be9885f63d651201ab0c3688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31cfb5b0fcaba634b18b0c886e728b44"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a31cfb5b0fcaba634b18b0c886e728b44">getLevel</a> (int32_t _id)</td></tr>
+<tr class="separator:a31cfb5b0fcaba634b18b0c886e728b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08110480947e6d682ad69b5b4a4d18d5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a08110480947e6d682ad69b5b4a4d18d5">getListInstance</a> ()</td></tr>
+<tr class="separator:a08110480947e6d682ad69b5b4a4d18d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a157a0ce2993c115906b8a2607f6a9133"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a157a0ce2993c115906b8a2607f6a9133">setColor</a> (bool _status)</td></tr>
+<tr class="separator:a157a0ce2993c115906b8a2607f6a9133"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15e30e61e8db5a43e72358d2c02be6a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a15e30e61e8db5a43e72358d2c02be6a4">setTime</a> (bool _status)</td></tr>
+<tr class="separator:a15e30e61e8db5a43e72358d2c02be6a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2591d4ba7e3136ff84c0b81289000b79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a2591d4ba7e3136ff84c0b81289000b79">setLine</a> (bool _status)</td></tr>
+<tr class="separator:a2591d4ba7e3136ff84c0b81289000b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed76a2bba4f8c0f51633fa64ab08362d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#aed76a2bba4f8c0f51633fa64ab08362d">setFunction</a> (bool _status)</td></tr>
+<tr class="separator:aed76a2bba4f8c0f51633fa64ab08362d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b835d4980949026a8883570ea3837af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a9b835d4980949026a8883570ea3837af">setThreadId</a> (bool _status)</td></tr>
+<tr class="separator:a9b835d4980949026a8883570ea3837af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae64b5abf2ea03562679668e6242c49a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#ae64b5abf2ea03562679668e6242c49a2">setThreadNameEnable</a> (bool _status)</td></tr>
+<tr class="separator:ae64b5abf2ea03562679668e6242c49a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98f690a8538d4726fa0060331e021a08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a98f690a8538d4726fa0060331e021a08">setLibName</a> (bool _status)</td></tr>
+<tr class="separator:a98f690a8538d4726fa0060331e021a08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae6ff218b5e851513cfc29d030b865fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#aae6ff218b5e851513cfc29d030b865fb">setBackTrace</a> (bool _status)</td></tr>
+<tr class="separator:aae6ff218b5e851513cfc29d030b865fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e62f7052313032d6f02a20e1885d781"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a9e62f7052313032d6f02a20e1885d781">logChar</a> (int32_t _id, int32_t _level, int32_t _ligne, const char *_funcName, const char *_log)</td></tr>
+<tr class="separator:a9e62f7052313032d6f02a20e1885d781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a333ea900d08304571ccbfaef6d7f647b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a333ea900d08304571ccbfaef6d7f647b">logStream</a> (int32_t _id, int32_t _level, int32_t _ligne, const char *_funcName, const std::ostream &amp;_log)</td></tr>
+<tr class="separator:a333ea900d08304571ccbfaef6d7f647b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dcb1d0c878bbc5585c452d7fe7460d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a9dcb1d0c878bbc5585c452d7fe7460d8">logChar1</a> (int32_t _id, int32_t _level, const char *_log)</td></tr>
+<tr class="separator:a9dcb1d0c878bbc5585c452d7fe7460d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab60bc58f0e317b846c7219058111ba8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#ab60bc58f0e317b846c7219058111ba8b">logStream1</a> (int32_t _id, int32_t _level, const std::ostream &amp;_log)</td></tr>
+<tr class="separator:ab60bc58f0e317b846c7219058111ba8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa54d31e61733c3ed433fe18b7be4dfa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#aaa54d31e61733c3ed433fe18b7be4dfa">displayBacktrace</a> (bool _breakAtEnd=false, int32_t _removeElement=0)</td></tr>
+<tr class="separator:aaa54d31e61733c3ed433fe18b7be4dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c02ad11df203c22c7e65c759b43efdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a8c02ad11df203c22c7e65c759b43efdd">setCallbackLog</a> (const <a class="el" href="namespaceelog.html#a2f5d781d79bd79fcda8b94a212bcbbde">elog::callbackLog</a> &amp;_callback)</td></tr>
+<tr class="separator:a8c02ad11df203c22c7e65c759b43efdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78083b9d6ef033e329b788f8fa22f3f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a78083b9d6ef033e329b788f8fa22f3f3">setLogInFile</a> (const std::string &amp;_filename=&quot;&quot;)</td></tr>
+<tr class="separator:a78083b9d6ef033e329b788f8fa22f3f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a496120feb0c59449a46057559c6c8a1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a496120feb0c59449a46057559c6c8a1a">unsetLogInFile</a> ()</td></tr>
+<tr class="separator:a496120feb0c59449a46057559c6c8a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>basic namespace of the elog library. (it might contain all the elog fuctions without macro) </p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="a2f5d781d79bd79fcda8b94a212bcbbde"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceelog.html#a2f5d781d79bd79fcda8b94a212bcbbde">elog::callbackLog</a> = typedef std::function&lt;void (const char* _libName, enum <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a> _level, int32_t _ligne, const char* _funcName, const char* _log)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>function definition of an external log function </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_libName</td><td>pounter on a string containing the library name </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_level</td><td>Level of the log (can be filter with <a class="el" href="namespaceelog.html#a3afe4089acb36e88d7266c1ce85ddc7b">setLevel</a>) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_ligne</td><td>Line of the log </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_funcName</td><td>Full function name: 'void etk::MyClass::functionName(...)' </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_log</td><td>String containing the Log </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="a2aac95a15381721219c16f6ff5b4fb89"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Log level is a simple list of all log availlable. This enum is used when setting a log and when user chose the level of log displayed. </p>
+<dl class="section note"><dt>Note</dt><dd>: I use a "enum" and not an "enum class" because it create some problem on the macro declaration (not easy to convert number in an "enum class" </dd></dl>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a2aac95a15381721219c16f6ff5b4fb89a93c9ecff62779bddcc1bc2e7fc5dd829"></a>level_print&#160;</td><td class="fielddoc">
+<p>basic print for Help or result (never filtered) </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a2aac95a15381721219c16f6ff5b4fb89aeff8c0bec7329ce8b94597f6bd501354"></a>level_none&#160;</td><td class="fielddoc">
+<p>no display requested </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a2aac95a15381721219c16f6ff5b4fb89a4c2b8e97dbaeda89eb1fbce53e691625"></a>level_critical&#160;</td><td class="fielddoc">
+<p>Display only critical logs (note that critical generally assert with a backtrace (when we can)) </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a2aac95a15381721219c16f6ff5b4fb89add2b92a662d3e09201bfc37cf42f906c"></a>level_error&#160;</td><td class="fielddoc">
+<p>Display Error and critical logs. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a2aac95a15381721219c16f6ff5b4fb89abe0c0f2534e916ba560a798d1392ce0c"></a>level_warning&#160;</td><td class="fielddoc">
+<p>Display log critical to warning. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a2aac95a15381721219c16f6ff5b4fb89aec0f38e9cdb484718ef007a57628e021"></a>level_info&#160;</td><td class="fielddoc">
+<p>Display log critical to information (removed in release mode) </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a2aac95a15381721219c16f6ff5b4fb89a97d8804cb4c8776f67824ec0acf53efb"></a>level_debug&#160;</td><td class="fielddoc">
+<p>Display log critical to debug (removed in release mode) </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a2aac95a15381721219c16f6ff5b4fb89adf726904a7486e61530282123dbd58cd"></a>level_verbose&#160;</td><td class="fielddoc">
+<p>Display all logs (removed in release and debug mode) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="aaa54d31e61733c3ed433fe18b7be4dfa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::displayBacktrace </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>_breakAtEnd</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_removeElement</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Display the current backtrace. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_breakAtEnd</td><td>assert program when backtrace is printed </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_removeElement</td><td>Number of element remove in the stack before display (permit to remove log function call) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a31cfb5b0fcaba634b18b0c886e728b44"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t elog::getLevel </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the current level of debug for a specific intance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_id</td><td>Id Of the intance </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the enum casted in an integer ==&gt; generise the API (not dependent of etk) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a08110480947e6d682ad69b5b4a4d18d5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; elog::getListInstance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get list of all intance. </p>
+<dl class="section return"><dt>Returns</dt><dd>the name list of all intance </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1005ac82c94e09b499d29b70a98cd5cc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::init </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>_argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char **&#160;</td>
+          <td class="paramname"><em>_argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize elog. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_argc</td><td>Number of argument list </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_argv</td><td>List of arguments </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9e62f7052313032d6f02a20e1885d781"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::logChar </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_ligne</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>_funcName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>_log</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call log to display. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_id</td><td>Id of the instance type </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_level</td><td>Level debug </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_ligne</td><td>Line of the debug </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_funcName</td><td>Function name for debug (compleate decorate signature) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_log</td><td>Stream to log </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9dcb1d0c878bbc5585c452d7fe7460d8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::logChar1 </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>_log</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call log to display. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_id</td><td>Id of the instance type </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_level</td><td>Level debug </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_log</td><td>Stream to log </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a333ea900d08304571ccbfaef6d7f647b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::logStream </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_ligne</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>_funcName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>_log</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call log to display. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_id</td><td>Id of the instance type </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_level</td><td>Level debug </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_ligne</td><td>Line of the debug </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_funcName</td><td>Function name for debug (compleate decorate signature) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_log</td><td>Stream to log </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ab60bc58f0e317b846c7219058111ba8b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::logStream1 </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>_log</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call log to display. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_id</td><td>Id of the instance type </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_level</td><td>Level debug </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_log</td><td>Stream to log </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7e40b0be74fd80765658df83f72a4e3e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t elog::registerInstance </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Register an element in the log system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_name</td><td>Name of the module </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>reference Id of an instance name </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aae6ff218b5e851513cfc29d030b865fb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::setBackTrace </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>_status</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set back-trace display on Error log enable or disable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_status</td><td>New value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a8c02ad11df203c22c7e65c759b43efdd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::setCallbackLog </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceelog.html#a2f5d781d79bd79fcda8b94a212bcbbde">elog::callbackLog</a> &amp;&#160;</td>
+          <td class="paramname"><em>_callback</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set a callback to display all log in an other framework. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_callback</td><td>Function to call when log arrive </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a157a0ce2993c115906b8a2607f6a9133"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::setColor </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>_status</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set Color enable or disable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_status</td><td>New value of color. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aed76a2bba4f8c0f51633fa64ab08362d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::setFunction </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>_status</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set Function display enable or disable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_status</td><td>New value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a3afe4089acb36e88d7266c1ce85ddc7b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::setLevel </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a>&#160;</td>
+          <td class="paramname"><em>_level</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the log level of a specific instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_name</td><td>Name of the intance </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_level</td><td>New level to set on the instance <div class="fragment"><div class="line"><a class="code" href="namespaceelog.html#a3afe4089acb36e88d7266c1ce85ddc7b">elog::setLevel</a>(<span class="stringliteral">&quot;ewol&quot;</span>, <a class="code" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89a4c2b8e97dbaeda89eb1fbce53e691625">elog::level_critical</a>);</div></div><!-- fragment --> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a423b95c78b78e98de35c8f176b9efbdc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::setLevel </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a>&#160;</td>
+          <td class="paramname"><em>_level</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the log level of a specific instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_id</td><td>Id of the intance </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_level</td><td>New level to set on the instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a600189d0be9885f63d651201ab0c3688"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::setLevel </td>
+          <td>(</td>
+          <td class="paramtype">enum <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a>&#160;</td>
+          <td class="paramname"><em>_level</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set global debug level. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_level</td><td>New level to set on the instance <div class="fragment"><div class="line"><a class="code" href="namespaceelog.html#a3afe4089acb36e88d7266c1ce85ddc7b">elog::setLevel</a>(<a class="code" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89adf726904a7486e61530282123dbd58cd">elog::level_verbose</a>);</div></div><!-- fragment --> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a98f690a8538d4726fa0060331e021a08"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::setLibName </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>_status</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set library display enable or disable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_status</td><td>New value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a2591d4ba7e3136ff84c0b81289000b79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::setLine </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>_status</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set Line display enable or disable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_status</td><td>New value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a78083b9d6ef033e329b788f8fa22f3f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::setLogInFile </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>_filename</em> = <code>&quot;&quot;</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set log done in a specific file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_filename</td><td>Name of the file to log (if not set the log system select alone the log file) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>in release the log is automatically store in a file in the system. (windows log is done in file automatically) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9b835d4980949026a8883570ea3837af"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::setThreadId </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>_status</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set thread id enable or disable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_status</td><td>New value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae64b5abf2ea03562679668e6242c49a2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::setThreadNameEnable </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>_status</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set thread name enable or disable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_status</td><td>New value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a15e30e61e8db5a43e72358d2c02be6a4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::setTime </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>_status</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set Time display enable or disable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_status</td><td>New value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a496120feb0c59449a46057559c6c8a1a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elog::unsetLogInFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disable log in a file. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.8-->
+<!-- start footer part -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sun Oct 23 2016 22:01:38 for Elog: Etk log interface by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

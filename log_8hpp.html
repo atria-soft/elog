@@ -1,0 +1,317 @@
+<!-- HTML header for doxygen 1.8.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- For Mobile Devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+        <meta name="generator" content="Doxygen 1.8.11"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <title>Elog: Etk log interface: framework/atria-soft/elog/elog/log.hpp File Reference</title>
+        <!--<link href="tabs.css" rel="stylesheet" type="text/css"/>-->
+        <script type="text/javascript" src="dynsections.js"></script>
+        <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+        <link href="doxygen.css" rel="stylesheet" type="text/css" />
+        <link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="doxy-boot.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand">Elog: Etk log interface 0.4.0</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Main&nbsp;Page</a></li>
+                        <li><a href="pages.html">Related&nbsp;Pages</a></li>
+                        <li><a href="namespaces.html">Namespaces</a></li>
+                        <li><a href="annotated.html">Classes</a></li>
+                        <li><a href="files.html">Files</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Link-libs<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://HeeroYui.github.io/lutin">lutin</a></li>
+                                <li><a href="http://atria-soft.github.io/ewol">ewol</a></li>
+                                <li><a href="http://atria-soft.github.io/etk">etk</a></li>
+                                <li><a href="http://atria-soft.github.io/ejson">ejson</a></li>
+                                <li><a href="http://atria-soft.github.io/exml">exml</a></li>
+                                <li><a href="http://atria-soft.github.io/esvg">esvg</a></li>
+                                <li><a href="http://atria-soft.github.io/egami">egami</a></li>
+                                <li><a href="http://atria-soft.github.io/gale">gale</a></li>
+                                <li><a href="http://atria-soft.github.io/ege">ege</a></li>
+                                <li><a href="http://atria-soft.github.io/elog">elog</a></li>
+                                <li><a href="http://atria-soft.github.io/ememory">ememory</a></li>
+                                <li><a href="http://atria-soft.github.io/enet">enet</a></li>
+                                <li><a href="http://atria-soft.github.io/eproperty">eproperty</a></li>
+                                <li><a href="http://atria-soft.github.io/esignal">esignal</a></li>
+                                <li><a href="http://atria-soft.github.io/zeus">zeus</a></li>
+                                <li><a href="http://atria-soft.github.io/audio-ess">audio-ess</a></li>
+                                <li><a href="http://musicdsp.github.io/audio">audio</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-drain">audio-drain</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-orchestra">audio-orchestra</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-river">audio-river</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div id="search-box" class="input-group">
+                        <div class="input-group-btn">
+                            <button aria-expanded="false" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">All</a></li>
+                                <li><a href="#">Classes</a></li>
+                                <li><a href="#">Namespaces</a></li>
+                                <li><a href="#">Files</a></li>
+                                <li><a href="#">Functions</a></li>
+                                <li><a href="#">Variables</a></li>
+                                <li><a href="#">Typedefs</a></li>
+                                <li><a href="#">Enumerations</a></li>
+                                <li><a href="#">Enumerator</a></li>
+                                <li><a href="#">Friends</a></li>
+                                <li><a href="#">Macros</a></li>
+                                <li><a href="#">Pages</a></li>
+                            </ul>
+                        </div>
+                        <button id="search-close" type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                        <input id="search-field" class="form-control" accesskey="S" onkeydown="searchBox.OnSearchFieldChange(event);" placeholder="Search ..." type="text">
+                    </div>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+            <div class="content" id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 panel panel-default" style="padding-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_644e041c3a6521da7b27eba0e4eb2b95.html">framework</a></li><li class="navelem"><a class="el" href="dir_a094892b17be858f66bf3446bbb755c7.html">atria-soft</a></li><li class="navelem"><a class="el" href="dir_b41d3cda210a2eb7fba2c14a62079e2f.html">elog</a></li><li class="navelem"><a class="el" href="dir_840c2f10d488013eccb3eb478799a512.html">elog</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">log.hpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;sstream&gt;</code><br />
+<code>#include &lt;ostream&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+</div>
+<p><a href="log_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceelog"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html">elog</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:aa40f1ece2f1d083805177411e2129690"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8hpp.html#aa40f1ece2f1d083805177411e2129690">ELOG_BASE</a>(logId,  info,  data)</td></tr>
+<tr class="separator:aa40f1ece2f1d083805177411e2129690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a2f5d781d79bd79fcda8b94a212bcbbde"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a2f5d781d79bd79fcda8b94a212bcbbde">elog::callbackLog</a> = std::function&lt; void(const char *_libName, enum <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a> _level, int32_t _ligne, const char *_funcName, const char *_log)&gt;</td></tr>
+<tr class="separator:a2f5d781d79bd79fcda8b94a212bcbbde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a2aac95a15381721219c16f6ff5b4fb89"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a> { <br />
+&#160;&#160;<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89a93c9ecff62779bddcc1bc2e7fc5dd829">elog::level_print</a> = -1, 
+<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89aeff8c0bec7329ce8b94597f6bd501354">elog::level_none</a> = 0, 
+<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89a4c2b8e97dbaeda89eb1fbce53e691625">elog::level_critical</a> = 1, 
+<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89add2b92a662d3e09201bfc37cf42f906c">elog::level_error</a> = 2, 
+<br />
+&#160;&#160;<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89abe0c0f2534e916ba560a798d1392ce0c">elog::level_warning</a> = 3, 
+<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89aec0f38e9cdb484718ef007a57628e021">elog::level_info</a> = 4, 
+<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89a97d8804cb4c8776f67824ec0acf53efb">elog::level_debug</a> = 5, 
+<a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89adf726904a7486e61530282123dbd58cd">elog::level_verbose</a> = 6
+<br />
+ }</td></tr>
+<tr class="separator:a2aac95a15381721219c16f6ff5b4fb89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a7e40b0be74fd80765658df83f72a4e3e"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a7e40b0be74fd80765658df83f72a4e3e">elog::registerInstance</a> (const std::string &amp;_name)</td></tr>
+<tr class="separator:a7e40b0be74fd80765658df83f72a4e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3afe4089acb36e88d7266c1ce85ddc7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a3afe4089acb36e88d7266c1ce85ddc7b">elog::setLevel</a> (const std::string &amp;_name, enum <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a> _level)</td></tr>
+<tr class="separator:a3afe4089acb36e88d7266c1ce85ddc7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a423b95c78b78e98de35c8f176b9efbdc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a423b95c78b78e98de35c8f176b9efbdc">elog::setLevel</a> (int32_t _id, enum <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a> _level)</td></tr>
+<tr class="separator:a423b95c78b78e98de35c8f176b9efbdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a600189d0be9885f63d651201ab0c3688"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a600189d0be9885f63d651201ab0c3688">elog::setLevel</a> (enum <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89">elog::level</a> _level)</td></tr>
+<tr class="separator:a600189d0be9885f63d651201ab0c3688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31cfb5b0fcaba634b18b0c886e728b44"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a31cfb5b0fcaba634b18b0c886e728b44">elog::getLevel</a> (int32_t _id)</td></tr>
+<tr class="separator:a31cfb5b0fcaba634b18b0c886e728b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08110480947e6d682ad69b5b4a4d18d5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a08110480947e6d682ad69b5b4a4d18d5">elog::getListInstance</a> ()</td></tr>
+<tr class="separator:a08110480947e6d682ad69b5b4a4d18d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a157a0ce2993c115906b8a2607f6a9133"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a157a0ce2993c115906b8a2607f6a9133">elog::setColor</a> (bool _status)</td></tr>
+<tr class="separator:a157a0ce2993c115906b8a2607f6a9133"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15e30e61e8db5a43e72358d2c02be6a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a15e30e61e8db5a43e72358d2c02be6a4">elog::setTime</a> (bool _status)</td></tr>
+<tr class="separator:a15e30e61e8db5a43e72358d2c02be6a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2591d4ba7e3136ff84c0b81289000b79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a2591d4ba7e3136ff84c0b81289000b79">elog::setLine</a> (bool _status)</td></tr>
+<tr class="separator:a2591d4ba7e3136ff84c0b81289000b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed76a2bba4f8c0f51633fa64ab08362d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#aed76a2bba4f8c0f51633fa64ab08362d">elog::setFunction</a> (bool _status)</td></tr>
+<tr class="separator:aed76a2bba4f8c0f51633fa64ab08362d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b835d4980949026a8883570ea3837af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a9b835d4980949026a8883570ea3837af">elog::setThreadId</a> (bool _status)</td></tr>
+<tr class="separator:a9b835d4980949026a8883570ea3837af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae64b5abf2ea03562679668e6242c49a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#ae64b5abf2ea03562679668e6242c49a2">elog::setThreadNameEnable</a> (bool _status)</td></tr>
+<tr class="separator:ae64b5abf2ea03562679668e6242c49a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98f690a8538d4726fa0060331e021a08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a98f690a8538d4726fa0060331e021a08">elog::setLibName</a> (bool _status)</td></tr>
+<tr class="separator:a98f690a8538d4726fa0060331e021a08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae6ff218b5e851513cfc29d030b865fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#aae6ff218b5e851513cfc29d030b865fb">elog::setBackTrace</a> (bool _status)</td></tr>
+<tr class="separator:aae6ff218b5e851513cfc29d030b865fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e62f7052313032d6f02a20e1885d781"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a9e62f7052313032d6f02a20e1885d781">elog::logChar</a> (int32_t _id, int32_t _level, int32_t _ligne, const char *_funcName, const char *_log)</td></tr>
+<tr class="separator:a9e62f7052313032d6f02a20e1885d781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a333ea900d08304571ccbfaef6d7f647b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a333ea900d08304571ccbfaef6d7f647b">elog::logStream</a> (int32_t _id, int32_t _level, int32_t _ligne, const char *_funcName, const std::ostream &amp;_log)</td></tr>
+<tr class="separator:a333ea900d08304571ccbfaef6d7f647b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dcb1d0c878bbc5585c452d7fe7460d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a9dcb1d0c878bbc5585c452d7fe7460d8">elog::logChar1</a> (int32_t _id, int32_t _level, const char *_log)</td></tr>
+<tr class="separator:a9dcb1d0c878bbc5585c452d7fe7460d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab60bc58f0e317b846c7219058111ba8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#ab60bc58f0e317b846c7219058111ba8b">elog::logStream1</a> (int32_t _id, int32_t _level, const std::ostream &amp;_log)</td></tr>
+<tr class="separator:ab60bc58f0e317b846c7219058111ba8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa54d31e61733c3ed433fe18b7be4dfa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#aaa54d31e61733c3ed433fe18b7be4dfa">elog::displayBacktrace</a> (bool _breakAtEnd=false, int32_t _removeElement=0)</td></tr>
+<tr class="separator:aaa54d31e61733c3ed433fe18b7be4dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c02ad11df203c22c7e65c759b43efdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a8c02ad11df203c22c7e65c759b43efdd">elog::setCallbackLog</a> (const <a class="el" href="namespaceelog.html#a2f5d781d79bd79fcda8b94a212bcbbde">elog::callbackLog</a> &amp;_callback)</td></tr>
+<tr class="separator:a8c02ad11df203c22c7e65c759b43efdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78083b9d6ef033e329b788f8fa22f3f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a78083b9d6ef033e329b788f8fa22f3f3">elog::setLogInFile</a> (const std::string &amp;_filename=&quot;&quot;)</td></tr>
+<tr class="separator:a78083b9d6ef033e329b788f8fa22f3f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a496120feb0c59449a46057559c6c8a1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelog.html#a496120feb0c59449a46057559c6c8a1a">elog::unsetLogInFile</a> ()</td></tr>
+<tr class="separator:a496120feb0c59449a46057559c6c8a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Edouard DUPIN</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>2011, Edouard DUPIN, all right reserved</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>License: APACHE v2.0 (see license file) </dd></dl>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="aa40f1ece2f1d083805177411e2129690"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ELOG_BASE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">logId, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">info, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">data&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div><div class="line">        if (info &lt;= <a class="code" href="namespaceelog.html#a31cfb5b0fcaba634b18b0c886e728b44">elog::getLevel</a>(logId)) { \</div><div class="line">            std::stringbuf sb; \</div><div class="line">            std::ostream tmpStream(&amp;sb); \</div><div class="line">            tmpStream &lt;&lt; data; <a class="code" href="namespaceelog.html#a333ea900d08304571ccbfaef6d7f647b">\</a></div><div class="line"><a class="code" href="namespaceelog.html#a333ea900d08304571ccbfaef6d7f647b">			elog::logStream</a>(logId, info, __LINE__, __PRETTY_FUNCTION__, tmpStream); \</div><div class="line">        } \</div><div class="line">    } <span class="keywordflow">while</span>(0)</div><div class="ttc" id="namespaceelog_html_a31cfb5b0fcaba634b18b0c886e728b44"><div class="ttname"><a href="namespaceelog.html#a31cfb5b0fcaba634b18b0c886e728b44">elog::getLevel</a></div><div class="ttdeci">int32_t getLevel(int32_t _id)</div><div class="ttdoc">Get the current level of debug for a specific intance. </div></div>
+<div class="ttc" id="namespaceelog_html_a333ea900d08304571ccbfaef6d7f647b"><div class="ttname"><a href="namespaceelog.html#a333ea900d08304571ccbfaef6d7f647b">elog::logStream</a></div><div class="ttdeci">void logStream(int32_t _id, int32_t _level, int32_t _ligne, const char *_funcName, const std::ostream &amp;_log)</div><div class="ttdoc">Call log to display. </div></div>
+</div><!-- fragment -->
+<p>Basic macro of all logs macros. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">logId</td><td>Id of the library that log </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>Log level of this log: <a class="el" href="namespaceelog.html#a2aac95a15381721219c16f6ff5b4fb89" title="Log level is a simple list of all log availlable. This enum is used when setting a log and when user ...">elog::level</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Stream separaated with "&lt;&lt;" convertible in std::ostream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.8-->
+<!-- start footer part -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sun Oct 23 2016 22:01:38 for Elog: Etk log interface by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>
