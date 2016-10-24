@@ -14,9 +14,9 @@ Declaring the list of macro                                         {#elog_tutor
 ===========================
 
 
-**debug.h**
+**debug.hpp**
 
-@include sample/debug.h
+@include sample/debug.hpp
 
 **debug.cpp**
 
