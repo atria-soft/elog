@@ -2,7 +2,6 @@
 import lutin.debug as debug
 import lutin.tools as tools
 
-
 def get_type():
 	return "LIBRARY"
 
