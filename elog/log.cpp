@@ -26,7 +26,10 @@
 
 #include <elog/logIOs.h>
 
-#if !defined(__STDCPP_LLVM__) && defined(__TARGET_OS__Linux) && defined(DEBUG)
+#if    !defined(__STDCPP_LLVM__) \
+    && defined(__TARGET_OS__Linux) \
+    && defined(DEBUG) \
+    && !defined(__TARGET_OS__Web)
 	#include <execinfo.h>
 	#include <cxxabi.h>
 	#include <dlfcn.h>
@@ -70,8 +73,9 @@
 #endif
 
 #ifdef DEBUG
-	#define DEFAULT_LOG_LEVEL elog::level_info
-	#if defined(__TARGET_OS__Windows)
+	#define DEFAULT_LOG_LEVEL elog::level_verbose
+	#if    defined(__TARGET_OS__Windows) \
+	    || defined(__TARGET_OS__Web)
 		#define DEFAULT_LOG_COLOR false
 	#else
 		#define DEFAULT_LOG_COLOR true
