@@ -73,7 +73,7 @@
 #endif
 
 #ifdef DEBUG
-	#define DEFAULT_LOG_LEVEL elog::level_verbose
+	#define DEFAULT_LOG_LEVEL elog::level_info
 	#if    defined(__TARGET_OS__Windows) \
 	    || defined(__TARGET_OS__Web)
 		#define DEFAULT_LOG_COLOR false
