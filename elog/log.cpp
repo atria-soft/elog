@@ -282,11 +282,84 @@ static FILE*& getLogFile() {
 	return file;
 }
 
+
+// Copy for ETK FSNODE ...     [START]
+
+extern "C" {
+	// file browsing ...
+	#include <dirent.h>
+	#include <sys/stat.h>
+	#include <cerrno>
+}
+
+static int32_t FSNODE_LOCAL_mkdir(const char* _path, mode_t _mode) {
+	struct stat st;
+	int32_t status = 0;
+	if (stat(_path, &st) != 0) {
+		/* Directory does not exist. EEXIST for race condition */
+		#ifdef __TARGET_OS__Windows
+		if(0!=mkdir(_path)
+		#else
+		if(0!=mkdir(_path, _mode)
+		#endif
+		    && errno != EEXIST) {
+			status = -1;
+		}
+	} else if (!S_ISDIR(st.st_mode)) {
+		errno = ENOTDIR;
+		status = -1;
+	}
+	
+	return(status);
+}
+
+static int32_t FSNODE_LOCAL_mkPath(const char* _path, mode_t _mode) {
+	char *pp;
+	char *sp;
+	int status;
+	char *copypath = strdup(_path);
+	if (nullptr==copypath) {
+		return -1;
+	}
+	status = 0;
+	pp = copypath;
+	while (status == 0 && (sp = strchr(pp, '/')) != 0) {
+		if (sp != pp) {
+			/* Neither root nor double slash in path */
+			*sp = '\0';
+			status = FSNODE_LOCAL_mkdir(copypath, _mode);
+			*sp = '/';
+		}
+		pp = sp + 1;
+	}
+	if (status == 0) {
+		status = FSNODE_LOCAL_mkdir(_path, _mode);
+	}
+	free(copypath);
+	return (status);
+}
+
+static bool FSNODE_LOCAL_exist(const std::string& _path) {
+	struct stat st;
+	int32_t status = 0;
+	if (stat(_path.c_str(), &st) != 0) {
+		return false;
+	}
+	return true;
+}
+// Copy for ETK FSNODE ...     [END]
+
 void elog::setLogInFile(const std::string& _filename) {
 	elog::unsetLogInFile();
 	ELOG_PRINT("Log in file: '" << _filename << "'");
-	g_lock.lock();
 	FILE*& file = getLogFile();
+	// create path of the file:
+	size_t found=_filename.find_last_of("/\\");
+	std::string path = _filename.substr(0,found);
+	if (FSNODE_LOCAL_exist(path) == false) {
+		FSNODE_LOCAL_mkPath(path.c_str(), 0760);
+	}
+	g_lock.lock();
 	file = fopen(_filename.c_str(), "w");
 	g_lock.unlock();
 	if (file == nullptr) {
@@ -549,7 +622,7 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 		if (file != nullptr) {
 			*pointer++ = '\n';
 			*pointer = '\0';
-			fprintf(file, handle);
+			fprintf(file, "%s", handle);
 			switch(_level) {
 				default:
 					break;
