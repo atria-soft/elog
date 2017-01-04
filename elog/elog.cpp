@@ -75,6 +75,11 @@ void elog::init(int _argc, const char** _argv) {
 		if (startWith(data, "--elog-level=")) {
 			ELOG_INFO("Change global level at " << getLogLevel(std::string(data.begin()+13, data.end())));
 			elog::setLevel(getLogLevel(std::string(data.begin()+13, data.end())));
+		} else if (startWith(data, "--elog-max-line=")) {
+			std::string dataToParse = &data[16];
+			int value = 0;
+			sscanf(dataToParse.c_str(), "%d", &value);
+			elog::setMaxLineNumberInFile(value);
 		} else if (data == "--elog-color") {
 			elog::setColor(true);
 		} else if (data == "--elog-no-color") {
@@ -146,6 +151,7 @@ void elog::init(int _argc, const char** _argv) {
 			ELOG_PRINT("            X     Log level to set [0..6]");
 			ELOG_PRINT("            note: ':' can be replace with '/' or '+'");
 			ELOG_PRINT("        --elog-file=pathToFile   File to store the logs: (disable console logs)");
+			ELOG_PRINT("        --elog-max-line=XXX      Number of line in the log file");
 			ELOG_PRINT("        --elog-color             Enable color in log (default in Linux/debug)");
 			ELOG_PRINT("        --elog-no-color          Disable color in log (default in Linux/release and Other)");
 			ELOG_PRINT("        --elog-back-trace        Enable back-trace when an error log level is generated (to get a fast debug)");
@@ -184,5 +190,4 @@ void elog::init(int _argc, const char** _argv) {
 	
 	ELOG_INFO("E-LOG system init (END)");
 }
-
 

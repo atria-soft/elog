@@ -108,6 +108,11 @@ namespace elog {
 	 */
 	void setBackTrace(bool _status);
 	/**
+	 * @brief Set back-trace display on Error log enable or disable.
+	 * @param[in] _status New number of lines.
+	 */
+	void setMaxLineNumberInFile(size_t _status);
+	/**
 	 * @brief Call log to display
 	 * @param[in] _id Id of the instance type
 	 * @param[in] _level Level debug
@@ -169,6 +174,10 @@ namespace elog {
 	 * @brief Disable log in a file
 	 */
 	void unsetLogInFile();
+	/**
+	 * @brief When loggin in file, the flush is not done automaticaly ==> need to do it manualy
+	 */
+	void flush();
 };
 
 /**

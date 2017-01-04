@@ -116,6 +116,7 @@ size_t& getNameSizeLog() {
 	static size_t g_val = 5;
 	return g_val;
 }
+
 static std::vector<std::pair<std::string, enum elog::level> >& getList() {
 	static std::vector<std::pair<std::string, enum elog::level> > g_val;
 	return g_val;
@@ -277,9 +278,27 @@ static void getDisplayTime(char* data) {
 static std::mutex g_lock;
 static elog::callbackLog callbackUserLog(nullptr);
 
+static std::string& getLogFileName() {
+	static std::string g_val="";
+	return g_val;
+}
 static FILE*& getLogFile() {
-	static FILE* file=nullptr;
-	return file;
+	static FILE* g_val=nullptr;
+	return g_val;
+}
+
+static size_t& getLogFileCount() {
+	static size_t g_val = 0;
+	return g_val;
+}
+
+static size_t& getLogFileMaxCount() {
+	static size_t g_val = 0;
+	return g_val;
+}
+
+void elog::setMaxLineNumberInFile(size_t _status) {
+	getLogFileMaxCount() = _status;
 }
 
 
@@ -352,6 +371,7 @@ static bool FSNODE_LOCAL_exist(const std::string& _path) {
 void elog::setLogInFile(const std::string& _filename) {
 	elog::unsetLogInFile();
 	ELOG_PRINT("Log in file: '" << _filename << "'");
+	getLogFileName() = _filename;
 	FILE*& file = getLogFile();
 	// create path of the file:
 	size_t found=_filename.find_last_of("/\\");
@@ -368,6 +388,7 @@ void elog::setLogInFile(const std::string& _filename) {
 }
 
 void elog::unsetLogInFile() {
+	getLogFileName() = "";
 	g_lock.lock();
 	FILE*& file = getLogFile();
 	// close file only if needed ...
@@ -618,6 +639,8 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 	g_lock.lock();
 	{
 		FILE*& file = getLogFile();
+		size_t& fileCurrentCount = getLogFileCount();
+		size_t& fileMaxCount = getLogFileMaxCount();
 		// close file only if needed ...
 		if (file != nullptr) {
 			*pointer++ = '\n';
@@ -630,6 +653,24 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 				case elog::level_error:
 					fflush(file);
 					break;
+			}
+			// Increment the line counter in file
+			fileCurrentCount++;
+			if (fileMaxCount != 0) {
+				// the user request a maximum line number in the file:
+				if (fileCurrentCount > fileMaxCount) {
+					fileCurrentCount = 0;
+					fflush(file);
+					fclose(file);
+					std::string tmpFileName = getLogFileName();
+					if (    tmpFileName.size() > 0
+					     && tmpFileName[tmpFileName.size()-1] == '2') {
+						getLogFileName().pop_back();
+					} else {
+						getLogFileName() += "2";
+					}
+					file = fopen(getLogFileName().c_str(), "w");
+				}
 			}
 			// if we log in file, we have no need to log otherwise ... just "tail -f log.txt"
 			g_lock.unlock();
@@ -681,3 +722,13 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 }
 
 
+void elog::flush() {
+	g_lock.lock();
+	FILE*& file = getLogFile();
+	if (file != nullptr) {
+		fflush(file);
+	}
+	fflush(stdout);
+	g_lock.unlock();
+	return;
+}
