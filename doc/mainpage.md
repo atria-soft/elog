@@ -3,12 +3,12 @@ Elog library                                {#mainpage}
 
 @tableofcontents
 
-What is ELOG?                              {#elog_mainpage_what}
+What is ELOG?                               {#elog_mainpage_what}
 =============
 
 ELOG, or [**EWOL**](http://atria-soft.github.io/ewol) Logger, is a simple wrapper to concataine log with a simple basic macro ELOG_BASE().
 
-Where can I use it?                              {#elog_mainpage_where}
+Where can I use it?                         {#elog_mainpage_where}
 ===================
 
 Everywhere! EWOL is cross-platform devolopped to support bases OS:
@@ -18,28 +18,28 @@ Everywhere! EWOL is cross-platform devolopped to support bases OS:
 - Android (mouse + touch)
 - IOs (touch)
 
-What languages are supported?                              {#elog_mainpage_language}
+What languages are supported?               {#elog_mainpage_language}
 =============================
 
 EWOL is written in C++
 
-Are there any licensing restrictions?                              {#elog_mainpage_restriction}
+Are there any licensing restrictions?       {#elog_mainpage_restriction}
 =====================================
 
 EWOL is **FREE software** and _all sub-library are FREE and staticly linkable !!!_
 
 We have no dependency expected generic lib C++ (STL or CXX)
 
-License (APACHE 2)                              {#elog_mainpage_license}
+License (MPL v2.0)                          {#elog_mainpage_license}
 ==================
 
 Copyright elog Edouard DUPIN
 
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the Mozilla Public License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-<http://www.apache.org/licenses/LICENSE-2.0>
+<https://www.mozilla.org/MPL/2.0>
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
