@@ -711,7 +711,9 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 	#endif
 	g_lock.unlock();
 	if (_level == level_critical) {
+		#if defined(DEBUG)
 		std::this_thread::sleep_for(std::chrono::milliseconds(700));
+		#endif
 		displayBacktrace(true, 2);
 	}
 	// Display backtrace to facilitate the error problems
