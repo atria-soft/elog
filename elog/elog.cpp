@@ -61,13 +61,41 @@ static std::vector<std::string> split(const std::string& _input, char _val) {
 	}
 	return list;
 }
+static int32_t nbTimeInit = 0;
+
+void elog::unInit() {
+	if (nbTimeInit > 1) {
+		nbTimeInit--;
+		// not the time to uninit
+		return;
+	}
+	nbTimeInit--;
+	if (nbTimeInit < 0) {
+		ELOG_ERROR("E-log system un-init More un-init than init ...");
+		nbTimeInit = 0;
+		return;
+	}
+	ELOG_INFO("E-log system un-init (BEGIN)");
+	ELOG_INFO("E-log system un-init (END)");
+}
 
 void elog::init(int _argc, const char** _argv) {
+	if (nbTimeInit > 0) {
+		nbTimeInit++;
+		// already init
+		return;
+	}
+	nbTimeInit++;
 	ELOG_INFO("E-log system init (BEGIN)");
 	// retrive application Name:
-	std::string applName = _argv[0];
-	int lastSlash = applName.rfind('/');
-	applName = &applName[lastSlash+1];
+	std::string applName = "noApplicationName";
+	#if !defined(__TARGET_OS__Android) and !defined(__TARGET_OS__IOs)
+		if (_argc >= 1) {
+			applName = _argv[0];
+			int lastSlash = applName.rfind('/');
+			applName = &applName[lastSlash+1];
+		}
+	#endif
 	// get name: applName
 	bool userSpecifyLogFile = false;
 	for (int32_t iii=0; iii<_argc ; ++iii) {
@@ -137,7 +165,11 @@ void elog::init(int _argc, const char** _argv) {
 		} else if (    data == "-h"
 		            || data == "--help") {
 			ELOG_PRINT("elog - help : ");
-			ELOG_PRINT("    " << _argv[0] << " [options]");
+			if (_argc >= 1) {
+				ELOG_PRINT("    " << _argv[0] << " [options]");
+			} else {
+				ELOG_PRINT("    ? ? ? ? ? ? ? ? ? [options]");
+			}
 			ELOG_PRINT("        --elog-level=            Change the default log level (set all Log level):");
 			ELOG_PRINT("            0: debug None (default in release)");
 			ELOG_PRINT("            1: debug Critical");
@@ -166,7 +198,9 @@ void elog::init(int _argc, const char** _argv) {
 			ELOG_PRINT("            f: diplay function name");
 			ELOG_PRINT("        -h/--help:               Dispplay this help");
 			ELOG_PRINT("    example:");
-			ELOG_PRINT("        " << _argv[0] << " --elog-color --elog-level=2 --elog-lib=etk:5 --elog-lib=appl:6 --elog-config=NLlf");
+			if (_argc >= 1) {
+				ELOG_PRINT("        " << _argv[0] << " --elog-color --elog-level=2 --elog-lib=etk:5 --elog-lib=appl:6 --elog-config=NLlf");
+			}
 		} else if (startWith(data, "--elog") == true) {
 			ELOG_ERROR("Can not parse the argument : '" << data << "'");
 		}
@@ -187,7 +221,6 @@ void elog::init(int _argc, const char** _argv) {
 			#endif
 		#endif
 	}
-	
 	ELOG_INFO("E-LOG system init (END)");
 }
 

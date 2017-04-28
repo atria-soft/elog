@@ -18,5 +18,9 @@ namespace elog {
 	 * @param[in] _argv List of arguments
 	 */
 	void init(int _argc, const char** _argv);
+	/**
+	 * @brief Un-Initialize elog
+	 */
+	void unInit();
 }
 
