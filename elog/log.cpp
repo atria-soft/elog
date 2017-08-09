@@ -29,7 +29,8 @@
 #if    !defined(__STDCPP_LLVM__) \
     && defined(__TARGET_OS__Linux) \
     && defined(DEBUG) \
-    && !defined(__TARGET_OS__Web)
+    && !defined(__TARGET_OS__Web) \
+    && !defined(__TARGET_OS__buildroot)
 	#include <execinfo.h>
 	#include <cxxabi.h>
 	#include <dlfcn.h>
