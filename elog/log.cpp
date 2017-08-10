@@ -41,9 +41,9 @@
 		int stack_depth = backtrace(trace, MAX_DEPTH);
 		
 		ELOG_PRINT("Back-trace : ");
-		for (int32_t i = 1; i < stack_depth; i++) {
+		for (int32_t iii = 1; iii < stack_depth; ++iii) {
 			Dl_info dlinfo;
-			if(!dladdr(trace[i], &dlinfo)) {
+			if(!dladdr(trace[iii], &dlinfo)) {
 				break;
 			}
 			const char * symname = dlinfo.dli_sname;
@@ -64,6 +64,25 @@
 		if (_breakAtEnd == true) {
 			assert(false);
 		}
+	}
+#elif    defined(__TARGET_OS__MacOs) \
+      && defined(DEBUG) \
+      && defined(__MAC_10_5)
+	#include <execinfo.h>
+	#include <stdio.h>
+	#define MAX_DEPTH  (256)
+	void elog::displayBacktrace(bool _breakAtEnd, int32_t _removeElement) {
+		void* callstack[MAX_DEPTH];
+		uint32_t frames = backtrace(callstack, MAX_DEPTH);
+		char** strs = backtrace_symbols(callstack, frames);
+		ELOG_PRINT("Back-trace : ");
+		for (uint32_t iii=0; iii<frames; ++iii) {
+			ELOG_PRINT("    " << strs[iii]);
+		}
+		if (_breakAtEnd == true) {
+			assert(false);
+		}
+		free(strs);
 	}
 #else
 	void elog::displayBacktrace(bool _breakAtEnd, int32_t _removeElement) {
