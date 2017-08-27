@@ -10,7 +10,7 @@
 #include <elog/elog.hpp>
 #include <elog/debug.hpp>
 
-static elog::level getLogLevel(const std::string& _value) {
+static elog::level getLogLevel(const etk::String& _value) {
 	if (_value == "0") {
 		return elog::level_none;
 	} else if (_value == "1") {
@@ -30,7 +30,7 @@ static elog::level getLogLevel(const std::string& _value) {
 	return elog::level_verbose;
 }
 
-static bool startWith(const std::string& _obj, const std::string& _val) {
+static bool startWith(const etk::String& _obj, const etk::String& _val) {
 	if (_val.size() == 0) {
 		return false;
 	}
@@ -47,20 +47,6 @@ static bool startWith(const std::string& _obj, const std::string& _val) {
 	return true;
 }
 
-static std::vector<std::string> split(const std::string& _input, char _val) {
-	std::vector<std::string> list;
-	size_t lastStartPos = 0;
-	for(size_t iii=0; iii<_input.size(); iii++) {
-		if (_input[iii]==_val) {
-			list.push_back(std::string(_input, lastStartPos, iii - lastStartPos));
-			lastStartPos = iii+1;
-		}
-	}
-	if (lastStartPos<_input.size()) {
-		list.push_back(std::string(_input, lastStartPos));
-	}
-	return list;
-}
 static int32_t nbTimeInit = 0;
 
 void elog::unInit() {
@@ -88,7 +74,7 @@ void elog::init(int _argc, const char** _argv) {
 	nbTimeInit++;
 	ELOG_INFO("E-log system init (BEGIN)");
 	// retrive application Name:
-	std::string applName = "noApplicationName";
+	etk::String applName = "noApplicationName";
 	#if !defined(__TARGET_OS__Android) and !defined(__TARGET_OS__IOs)
 		if (_argc >= 1) {
 			applName = _argv[0];
@@ -99,12 +85,12 @@ void elog::init(int _argc, const char** _argv) {
 	// get name: applName
 	bool userSpecifyLogFile = false;
 	for (int32_t iii=0; iii<_argc ; ++iii) {
-		std::string data = _argv[iii];
+		etk::String data = _argv[iii];
 		if (startWith(data, "--elog-level=")) {
-			ELOG_INFO("Change global level at " << getLogLevel(std::string(data.begin()+13, data.end())));
-			elog::setLevel(getLogLevel(std::string(data.begin()+13, data.end())));
+			ELOG_INFO("Change global level at " << getLogLevel(etk::String(data.begin()+13, data.end())));
+			elog::setLevel(getLogLevel(etk::String(data.begin()+13, data.end())));
 		} else if (startWith(data, "--elog-max-line=")) {
-			std::string dataToParse = &data[16];
+			etk::String dataToParse = &data[16];
 			int value = 0;
 			sscanf(dataToParse.c_str(), "%d", &value);
 			elog::setMaxLineNumberInFile(value);
@@ -115,7 +101,7 @@ void elog::init(int _argc, const char** _argv) {
 		} else if (data == "--elog-back-trace") {
 			elog::setBackTrace(true);
 		} else if (startWith(data, "--elog-file=")) {
-			std::string value(data.begin()+12, data.end());
+			etk::String value(data.begin()+12, data.end());
 			if (value.size() == 0) {
 				elog::unsetLogInFile();
 			} else {
@@ -123,7 +109,7 @@ void elog::init(int _argc, const char** _argv) {
 			}
 			userSpecifyLogFile = true;
 		} else if (startWith(data, "--elog-config=")) {
-			std::string value(data.begin()+14, data.end());
+			etk::String value(data.begin()+14, data.end());
 			elog::setTime(false);
 			elog::setLine(false);
 			elog::setFunction(false);
@@ -148,12 +134,12 @@ void elog::init(int _argc, const char** _argv) {
 				}
 			}
 		} else if (startWith(data, "--elog-lib=")) {
-			std::string value(data.begin()+11, data.end());
-			std::vector<std::string> list = split(value, '/');
+			etk::String value(data.begin()+11, data.end());
+			etk::Vector<etk::String> list = value.split('/');
 			if (list.size() != 2) {
-				list = split(value, ':');
+				list = value.split(':');
 				if (list.size() != 2) {
-					list = split(value, '+');
+					list = value.split('+');
 					if (list.size() != 2) {
 						ELOG_ERROR("Can not set the --elog-lib= with value='" << value << "' not formated name:X or name/X or name+X");
 						continue;

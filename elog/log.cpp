@@ -11,7 +11,7 @@
 #include <time.h>
 #include <mutex>
 #include <thread>
-#include <map>
+#include <etk/Map.hpp>
 #include <inttypes.h>
 #ifdef ELOG_BUILD_ETHREAD
 	#include <ethread/tools.hpp>
@@ -137,18 +137,18 @@ size_t& getNameSizeLog() {
 	return g_val;
 }
 
-static std::vector<std::pair<std::string, enum elog::level> >& getList() {
-	static std::vector<std::pair<std::string, enum elog::level> > g_val;
+static etk::Vector<etk::Pair<etk::String, enum elog::level> >& getList() {
+	static etk::Vector<etk::Pair<etk::String, enum elog::level> > g_val;
 	return g_val;
 }
 
-int32_t elog::registerInstance(const std::string& _name) {
+int32_t elog::registerInstance(const etk::String& _name) {
 	for (size_t iii = 0; iii < getList().size(); ++iii) {
 		if (getList()[iii].first == _name) {
 			return iii;
 		}
 	}
-	getList().push_back(std::make_pair(_name, getDefaultLevel()));
+	getList().pushBack(etk::makePair(_name, getDefaultLevel()));
 	if (_name.size() >= getNameSizeLog()) {
 		getNameSizeLog() = _name.size()+1;
 	}
@@ -156,14 +156,14 @@ int32_t elog::registerInstance(const std::string& _name) {
 	return getList().size()-1;
 }
 
-void elog::setLevel(const std::string& _name, enum level _level) {
+void elog::setLevel(const etk::String& _name, enum level _level) {
 	for (size_t iii = 0; iii < getList().size(); ++iii) {
 		if (getList()[iii].first == _name) {
 			getList()[iii].second = _level;
 			return;
 		}
 	}
-	getList().push_back(std::make_pair(_name, _level));
+	getList().pushBack(etk::makePair(_name, _level));
 }
 
 void elog::setLevel(enum level _level) {
@@ -190,30 +190,24 @@ int32_t elog::getLevel(int32_t _id) {
 	return (int32_t)getList()[_id].second;
 }
 
-std::vector<std::string> elog::getListInstance() {
-	std::vector<std::string> out;
+etk::Vector<etk::String> elog::getListInstance() {
+	etk::Vector<etk::String> out;
 	for (size_t iii = 0; iii < getList().size(); ++iii) {
-		out.push_back(getList()[iii].first);
+		out.pushBack(getList()[iii].first);
 	}
 	return out;
 }
 
-void elog::logStream(int32_t _id, int32_t _level, int32_t _ligne, const char* _funcName, const std::ostream& _log) {
-	std::ostringstream oss;
-	oss << _log.rdbuf();
-	std::string sss =oss.str();
-	elog::logChar(_id, _level, _ligne, _funcName, sss.c_str());
+void elog::logStream(int32_t _id, int32_t _level, int32_t _ligne, const char* _funcName, const etk::Stream& _log) {
+	elog::logChar(_id, _level, _ligne, _funcName, _log.c_str());
 }
 
 void elog::logChar1(int32_t _id, int32_t _level, const char* _log) {
 	elog::logChar(_id, _level, -1, nullptr, _log);
 }
 
-void elog::logStream1(int32_t _id, int32_t _level, const std::ostream& _log) {
-	std::ostringstream oss;
-	oss << _log.rdbuf();
-	std::string sss =oss.str();
-	elog::logChar(_id, _level, -1, nullptr, sss.c_str());
+void elog::logStream1(int32_t _id, int32_t _level, const etk::Stream& _log) {
+	elog::logChar(_id, _level, -1, nullptr, _log.c_str());
 }
 
 static bool& getColor() {
@@ -298,8 +292,8 @@ static void getDisplayTime(char* data) {
 static std::mutex g_lock;
 static elog::callbackLog callbackUserLog(nullptr);
 
-static std::string& getLogFileName() {
-	static std::string g_val="";
+static etk::String& getLogFileName() {
+	static etk::String g_val="";
 	return g_val;
 }
 static FILE*& getLogFile() {
@@ -378,7 +372,7 @@ static int32_t FSNODE_LOCAL_mkPath(const char* _path, mode_t _mode) {
 	return (status);
 }
 
-static bool FSNODE_LOCAL_exist(const std::string& _path) {
+static bool FSNODE_LOCAL_exist(const etk::String& _path) {
 	struct stat st;
 	int32_t status = 0;
 	if (stat(_path.c_str(), &st) != 0) {
@@ -388,14 +382,14 @@ static bool FSNODE_LOCAL_exist(const std::string& _path) {
 }
 // Copy for ETK FSNODE ...     [END]
 
-void elog::setLogInFile(const std::string& _filename) {
+void elog::setLogInFile(const etk::String& _filename) {
 	elog::unsetLogInFile();
 	ELOG_PRINT("Log in file: '" << _filename << "'");
 	getLogFileName() = _filename;
 	FILE*& file = getLogFile();
 	// create path of the file:
-	size_t found=_filename.find_last_of("/\\");
-	std::string path = _filename.substr(0,found);
+	size_t found=_filename.rfind("/\\");
+	etk::String path = _filename.extract(0,found);
 	if (FSNODE_LOCAL_exist(path) == false) {
 		FSNODE_LOCAL_mkPath(path.c_str(), 0760);
 	}
@@ -568,7 +562,7 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 		}
 		if(getThreadNameEnable() == true) {
 			// display thread ID
-			std::string name = ethread::getName();
+			etk::String name = ethread::getName();
 			if (name.size() >= getThreadSizeLog() ) {
 				getThreadSizeLog() = name.size() + 1;
 			}
@@ -610,16 +604,16 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 						startPos2 = strchr(startPos+1, ' ');
 					}
 					if(uint64_t(stopPos) < uint64_t(startPos)) {
-						snprintf(tmpPointer, std::min(uint64_t(1024), uint64_t(stopPos)-uint64_t(_funcName)), "%s", _funcName);
+						snprintf(tmpPointer, etk::min(uint64_t(1024), uint64_t(stopPos)-uint64_t(_funcName)), "%s", _funcName);
 					} else {
-						snprintf(tmpPointer, std::min(uint64_t(1024), uint64_t(stopPos)-uint64_t(startPos)), "%s", startPos+1);
+						snprintf(tmpPointer, etk::min(uint64_t(1024), uint64_t(stopPos)-uint64_t(startPos)), "%s", startPos+1);
 					}
 				} else {
 					snprintf(tmpPointer, 1024, "%s", startPos);
 				}
 			} else {
 				if (stopPos != nullptr) {
-					snprintf(tmpPointer, std::min(uint64_t(1024), uint64_t(stopPos)-uint64_t(_funcName)+1), "%s", _funcName);
+					snprintf(tmpPointer, etk::min(uint64_t(1024), uint64_t(stopPos)-uint64_t(_funcName)+1), "%s", _funcName);
 				} else {
 					snprintf(tmpPointer, 1024, "%s", _funcName);
 				}
@@ -682,10 +676,10 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 					fileCurrentCount = 0;
 					fflush(file);
 					fclose(file);
-					std::string tmpFileName = getLogFileName();
+					etk::String tmpFileName = getLogFileName();
 					if (    tmpFileName.size() > 0
 					     && tmpFileName[tmpFileName.size()-1] == '2') {
-						getLogFileName().pop_back();
+						getLogFileName().popBack();
 					} else {
 						getLogFileName() += "2";
 					}

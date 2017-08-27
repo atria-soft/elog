@@ -8,8 +8,10 @@
 #pragma once
 
 #include <sstream>
-#include <ostream>
-#include <vector>
+#include <etk/Stream.hpp>
+#include <etk/Vector.hpp>
+#include <etk/String.hpp>
+#include <etk/Stream.hpp>
 #include <functional>
 
 namespace elog {
@@ -32,7 +34,7 @@ namespace elog {
 	 * @param[in] _name Name of the module
 	 * @return reference Id of an instance name
 	 */
-	int32_t registerInstance(const std::string& _name);
+	int32_t registerInstance(const etk::String& _name);
 	/**
 	 * @brief Set the log level of a specific instance
 	 * @param[in] _name Name of the intance
@@ -41,7 +43,7 @@ namespace elog {
 	 *   elog::setLevel("ewol", elog::level_critical);
 	 * @endcode
 	 */
-	void setLevel(const std::string& _name, enum elog::level _level);
+	void setLevel(const etk::String& _name, enum elog::level _level);
 	/**
 	 * @brief Set the log level of a specific instance
 	 * @param[in] _id Id of the intance
@@ -66,7 +68,7 @@ namespace elog {
 	 * @brief Get list of all intance
 	 * @return the name list of all intance
 	 */
-	std::vector<std::string> getListInstance();
+	etk::Vector<etk::String> getListInstance();
 	/**
 	 * @brief Set Color enable or disable.
 	 * @param[in] _status New value of color.
@@ -129,7 +131,7 @@ namespace elog {
 	 * @param[in] _funcName Function name for debug (compleate decorate signature)
 	 * @param[in] _log Stream to log
 	 */
-	void logStream(int32_t _id, int32_t _level, int32_t _ligne, const char* _funcName, const std::ostream& _log);
+	void logStream(int32_t _id, int32_t _level, int32_t _ligne, const char* _funcName, const etk::Stream& _log);
 	/**
 	 * @brief Call log to display
 	 * @param[in] _id Id of the instance type
@@ -143,7 +145,7 @@ namespace elog {
 	 * @param[in] _level Level debug
 	 * @param[in] _log Stream to log
 	 */
-	void logStream1(int32_t _id, int32_t _level, const std::ostream& _log);
+	void logStream1(int32_t _id, int32_t _level, const etk::Stream& _log);
 	/**
 	 * @brief Display the current backtrace
 	 * @param[in] _breakAtEnd assert program when backtrace is printed
@@ -169,7 +171,7 @@ namespace elog {
 	 * @param[in] _filename Name of the file to log (if not set the log system select alone the log file)
 	 * @note in release the log is automatically store in a file in the system. (windows log is done in file automatically)
 	 */
-	void setLogInFile(const std::string& _filename="");
+	void setLogInFile(const etk::String& _filename="");
 	/**
 	 * @brief Disable log in a file
 	 */
@@ -184,13 +186,12 @@ namespace elog {
  * @brief Basic macro of all logs macros
  * @param[in] logId Id of the library that log
  * @param[in] info Log level of this log: elog::level
- * @param[in] data Stream separaated with "<<" convertible in std::ostream
+ * @param[in] data Stream separaated with "<<" convertible in etk::Stream
  */
 #define ELOG_BASE(logId,info,data) \
 	do { \
 		if (info <= elog::getLevel(logId)) { \
-			std::stringbuf sb; \
-			std::ostream tmpStream(&sb); \
+			etk::Stream tmpStream; \
 			tmpStream << data; \
 			elog::logStream(logId, info, __LINE__, __PRETTY_FUNCTION__, tmpStream); \
 		} \

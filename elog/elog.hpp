@@ -7,7 +7,7 @@
  */
 #pragma once
 
-#include <string>
+#include <etk/String.hpp>
 /**
  * @brief basic namespace of the elog library. (it might contain all the elog fuctions without macro)
  */
