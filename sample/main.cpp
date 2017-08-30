@@ -17,31 +17,31 @@ static void myExternalLogCallback(const char* _libName, enum elog::level _level,
 //! [elog_sample_main_callback_DECLARATION]
 	switch(_level) {
 		default:
-			std::cout << "[?] ";
+			printf("[?] ");
 			break;
 		case elog::level_print:
-			std::cout << "[P] ";
+			printf("[P] ");
 			break;
 		case elog::level_critical:
-			std::cout << "[C] ";
+			printf("[C] ");
 			break;
 		case elog::level_error:
-			std::cout << "[E] ";
+			printf("[E] ");
 			break;
 		case elog::level_warning:
-			std::cout << "[W] ";
+			printf("[W] ");
 			break;
 		case elog::level_info:
-			std::cout << "[I] ";
+			printf("[I] ");
 			break;
 		case elog::level_debug:
-			std::cout << "[D] ";
+			printf("[D] ");
 			break;
 		case elog::level_verbose:
-			std::cout << "[V] ";
+			printf("[V] ");
 			break;
 	}
-	std::cout << _libName << " (" << _ligne << ") " << _funcName << " | " << _log << std::endl;
+	printf("%s (%d) %s | %s\n", _libName, _ligne, _funcName, _log);
 }
 //! [elog_sample_main_callback]
 
@@ -49,8 +49,10 @@ static void myExternalLogCallback(const char* _libName, enum elog::level _level,
 //! [elog_sample_main]
 /**
  * @brief Main of the program (This can be set in every case, but it is not used in Andoid...).
- * @param std IO
- * @return std IO
+ * @param[in] _argc standard input argument count
+ * @param[in] _argv standard input argument data (pointer on strings)
+ * @return <0 an error occurred
+ * @return all is good otherwise
  */
 //! [elog_sample_main_base]
 int main(int _argc, const char *_argv[]) {
@@ -66,14 +68,12 @@ int main(int _argc, const char *_argv[]) {
 	APPL_PRINT("PRINT display");
 	//APPL_CRITICAL("CRITICAL display"); // Disable critical because it create an assert ...
 	//! [elog_sample_main_log]
-	
 	// Change the global log level:
 	elog::setLevel(elog::level_verbose);
 	//! [elog_sample_main_callback_link]
 	// Set a callback:
 	elog::setCallbackLog(&myExternalLogCallback);
 	//! [elog_sample_main_callback_link]
-	
 	// try again new logs:
 	APPL_VERBOSE("VERBOSE display");
 	APPL_DEBUG("DEBUG display");
@@ -81,8 +81,6 @@ int main(int _argc, const char *_argv[]) {
 	APPL_WARNING("WARNING display");
 	APPL_ERROR("ERROR display");
 	APPL_PRINT("PRINT display");
-	
-	
 	return 0;
 }
 //! [elog_sample_main]

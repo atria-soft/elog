@@ -152,7 +152,7 @@ int32_t elog::registerInstance(const etk::String& _name) {
 	if (_name.size() >= getNameSizeLog()) {
 		getNameSizeLog() = _name.size()+1;
 	}
-	//std::cout << "register log : '" << _name << "'=" << getList().size()-1 << std::endl;
+	//printf("register log : '%s'=%ld\n", _name.c_str(), getList().size()-1);
 	return getList().size()-1;
 }
 
@@ -721,7 +721,7 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 	#elif defined(__TARGET_OS__IOs)
 		iosNSLog(handle);
 	#else
-		std::cout << handle << std::endl;
+		printf("%s\n", handle);
 	#endif
 	g_lock.unlock();
 	if (_level == level_critical) {

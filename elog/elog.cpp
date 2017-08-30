@@ -9,6 +9,7 @@
 #include <elog/log.hpp>
 #include <elog/elog.hpp>
 #include <elog/debug.hpp>
+#include <etk/String.hpp>
 
 static elog::level getLogLevel(const etk::String& _value) {
 	if (_value == "0") {
@@ -40,7 +41,7 @@ static bool startWith(const etk::String& _obj, const etk::String& _val) {
 	for( size_t iii = 0;
 	     iii < _val.size();
 	     iii++) {
-		if (std::tolower(_val[iii]) != std::tolower(_obj[iii])) {
+		if (etk::toLower(_val[iii]) != etk::toLower(_obj[iii])) {
 			return false;
 		}
 	}

@@ -58,7 +58,7 @@ def configure(target, my_module):
 	my_module.compile_version("c++", 2011)
 	my_module.compile_version("c", 1999)
 	# add dependency of the generic C++ library:
-	my_module.add_depend('cxx')
+	my_module.add_optionnal_depend('etk-base')
 	my_module.add_optionnal_depend('ethread-tools', ["c++", "-DELOG_BUILD_ETHREAD"])
 	
 	if "Windows" in target.get_type():
