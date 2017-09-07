@@ -7,12 +7,11 @@
  */
 #pragma once
 
-#include <sstream>
 #include <etk/Stream.hpp>
 #include <etk/Vector.hpp>
 #include <etk/String.hpp>
 #include <etk/Stream.hpp>
-#include <functional>
+#include <etk/Function.hpp>
 
 namespace elog {
 	/**
@@ -160,7 +159,7 @@ namespace elog {
 	 * @param[in] _funcName Full function name: 'void etk::MyClass::functionName(...)'
 	 * @param[in] _log String containing the Log
 	 */
-	using callbackLog = std::function<void (const char* _libName, enum elog::level _level, int32_t _ligne, const char* _funcName, const char* _log)>;
+	using callbackLog = etk::Function<void (const char* _libName, enum elog::level _level, int32_t _ligne, const char* _funcName, const char* _log)>;
 	/**
 	 * @brief Set a callback to display all log in an other framework
 	 * @param[in] _callback Function to call when log arrive

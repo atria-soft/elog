@@ -9,16 +9,12 @@
 #include <elog/log.hpp>
 #include <elog/debug.hpp>
 #include <time.h>
-#include <mutex>
-#include <thread>
+#include <ethread/Mutex.hpp>
+#include <ethread/Thread.hpp>
 #include <etk/Map.hpp>
 #include <inttypes.h>
-#ifdef ELOG_BUILD_ETHREAD
-	#include <ethread/tools.hpp>
-#endif
+#include <ethread/tools.hpp>
 #include <elog/debug.hpp>
-#include <cstring>
-#include <iostream>
 
 #if defined(__TARGET_OS__Android)
 #	include <android/log.h>
@@ -289,7 +285,7 @@ static void getDisplayTime(char* data) {
 #endif
 }
 
-static std::mutex g_lock;
+static ethread::Mutex g_lock;
 static elog::callbackLog callbackUserLog(nullptr);
 
 static etk::String& getLogFileName() {
@@ -322,7 +318,7 @@ extern "C" {
 	// file browsing ...
 	#include <dirent.h>
 	#include <sys/stat.h>
-	#include <cerrno>
+	#include <errno.h>
 }
 
 static int32_t FSNODE_LOCAL_mkdir(const char* _path, mode_t _mode) {
@@ -331,9 +327,9 @@ static int32_t FSNODE_LOCAL_mkdir(const char* _path, mode_t _mode) {
 	if (stat(_path, &st) != 0) {
 		/* Directory does not exist. EEXIST for race condition */
 		#ifdef __TARGET_OS__Windows
-		if(0!=mkdir(_path)
+		if(mkdir(_path) != 0
 		#else
-		if(0!=mkdir(_path, _mode)
+		if(mkdir(_path, _mode) != 0
 		#endif
 		    && errno != EEXIST) {
 			status = -1;
@@ -342,7 +338,6 @@ static int32_t FSNODE_LOCAL_mkdir(const char* _path, mode_t _mode) {
 		errno = ENOTDIR;
 		status = -1;
 	}
-	
 	return(status);
 }
 
@@ -395,7 +390,7 @@ void elog::setLogInFile(const etk::String& _filename) {
 	}
 	g_lock.lock();
 	file = fopen(_filename.c_str(), "w");
-	g_lock.unlock();
+	g_lock.unLock();
 	if (file == nullptr) {
 		ELOG_ERROR("Can not open file: '" << _filename << "'");
 	}
@@ -411,7 +406,7 @@ void elog::unsetLogInFile() {
 		fclose(file);
 		file = nullptr;
 	}
-	g_lock.unlock();
+	g_lock.unLock();
 }
 
 
@@ -419,7 +414,7 @@ void elog::setCallbackLog(const elog::callbackLog& _callback) {
 	// TODO : Check atomicity ...
 	g_lock.lock();
 	callbackUserLog = _callback;
-	g_lock.unlock();
+	g_lock.unLock();
 }
 //regular colors
 #define ETK_BASH_COLOR_BLACK			"\e[0;30m"
@@ -466,7 +461,7 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 		if (callbackUserLog != nullptr) {
 			callbackUserLog(libName, elog::level(_level), _ligne, _funcName, _log);
 		}
-		g_lock.unlock();
+		g_lock.unLock();
 		return;
 	}
 	char handle[LENGHT_MAX_LOG] = "";
@@ -687,7 +682,7 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 				}
 			}
 			// if we log in file, we have no need to log otherwise ... just "tail -f log.txt"
-			g_lock.unlock();
+			g_lock.unLock();
 			return;
 		}
 	}
@@ -723,10 +718,10 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 	#else
 		printf("%s\n", handle);
 	#endif
-	g_lock.unlock();
+	g_lock.unLock();
 	if (_level == level_critical) {
 		#if defined(DEBUG)
-		std::this_thread::sleep_for(std::chrono::milliseconds(700));
+		ethread::sleepMilliSeconds(700);
 		#endif
 		displayBacktrace(true, 2);
 	}
@@ -745,6 +740,6 @@ void elog::flush() {
 		fflush(file);
 	}
 	fflush(stdout);
-	g_lock.unlock();
+	g_lock.unLock();
 	return;
 }
