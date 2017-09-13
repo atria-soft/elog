@@ -9,7 +9,6 @@
 #include "debug.hpp"
 #include <elog/elog.hpp>
 //! [elog_sample_main_include]
-#include <iostream>
 
 //! [elog_sample_main_callback]
 //! [elog_sample_main_callback_DECLARATION]
