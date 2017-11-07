@@ -36,7 +36,7 @@ def configure(target, my_module):
 	    ])
 	# build in C++ mode
 	my_module.compile_version("c++", 2011)
-	my_module.add_depend('elog')
+	my_module.add_depend(['elog', 'cxx'])
 	my_module.add_path('sample')
 	return True
 
