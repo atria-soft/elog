@@ -44,7 +44,7 @@
 			}
 			const char * symname = dlinfo.dli_sname;
 			int    status;
-			char * demangled = abi::__cxa_demangle(symname, nullptr, 0, &status);
+			char * demangled = abi::__cxa_demangle(symname, null, 0, &status);
 			if(status == 0 && demangled) {
 				symname = demangled;
 			}
@@ -53,7 +53,7 @@
 				ELOG_PRINT("        " << symname);
 			}
 			_removeElement--;
-			if(demangled != nullptr) {
+			if(demangled != null) {
 				free(demangled);
 			}
 		}
@@ -199,11 +199,11 @@ void elog::logStream(int32_t _id, int32_t _level, int32_t _ligne, const char* _f
 }
 
 void elog::logChar1(int32_t _id, int32_t _level, const char* _log) {
-	elog::logChar(_id, _level, -1, nullptr, _log);
+	elog::logChar(_id, _level, -1, null, _log);
 }
 
 void elog::logStream1(int32_t _id, int32_t _level, const etk::Stream& _log) {
-	elog::logChar(_id, _level, -1, nullptr, _log.c_str());
+	elog::logChar(_id, _level, -1, null, _log.c_str());
 }
 
 static bool& getColor() {
@@ -274,7 +274,7 @@ void elog::setBackTrace(bool _status) {
 static void getDisplayTime(char* data) {
 #ifdef __TARGET_OS__Android
 	struct timeval  now;
-	gettimeofday(&now, nullptr);
+	gettimeofday(&now, null);
 	sprintf(data, " %2dh%2d'%2d ", (int32_t)(now.tv_sec/3600)%24, (int32_t)(now.tv_sec/60)%60, (int32_t)(now.tv_sec%60));
 #else
 	time_t rawtime;
@@ -286,14 +286,14 @@ static void getDisplayTime(char* data) {
 }
 
 static ethread::Mutex g_lock;
-static elog::callbackLog callbackUserLog(nullptr);
+static elog::callbackLog callbackUserLog(null);
 
 static etk::String& getLogFileName() {
 	static etk::String g_val="";
 	return g_val;
 }
 static FILE*& getLogFile() {
-	static FILE* g_val=nullptr;
+	static FILE* g_val=null;
 	return g_val;
 }
 
@@ -346,7 +346,7 @@ static int32_t FSNODE_LOCAL_mkPath(const char* _path, mode_t _mode) {
 	char *sp;
 	int status;
 	char *copypath = strdup(_path);
-	if (nullptr==copypath) {
+	if (null==copypath) {
 		return -1;
 	}
 	status = 0;
@@ -391,7 +391,7 @@ void elog::setLogInFile(const etk::String& _filename) {
 	g_lock.lock();
 	file = fopen(_filename.c_str(), "w");
 	g_lock.unLock();
-	if (file == nullptr) {
+	if (file == null) {
 		ELOG_ERROR("Can not open file: '" << _filename << "'");
 	}
 }
@@ -401,10 +401,10 @@ void elog::unsetLogInFile() {
 	g_lock.lock();
 	FILE*& file = getLogFile();
 	// close file only if needed ...
-	if (file != nullptr) {
+	if (file != null) {
 		fflush(file);
 		fclose(file);
-		file = nullptr;
+		file = null;
 	}
 	g_lock.unLock();
 }
@@ -452,13 +452,13 @@ void elog::setCallbackLog(const elog::callbackLog& _callback) {
 
 void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _funcName, const char* _log) {
 	// special callback mode:
-	if (callbackUserLog != nullptr) {
+	if (callbackUserLog != null) {
 		const char* libName = "";
 		if (_id >= 0) {
 			libName = getList()[_id].first.c_str();
 		}
 		g_lock.lock();
-		if (callbackUserLog != nullptr) {
+		if (callbackUserLog != null) {
 			callbackUserLog(libName, elog::level(_level), _ligne, _funcName, _log);
 		}
 		g_lock.unLock();
@@ -586,14 +586,14 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 		int32_t len = strlen(handle);
 		char tmpName[1024];
 		char *tmpPointer = tmpName;
-		if (_funcName != nullptr) {
+		if (_funcName != null) {
 			// cleen for android :
 			char* startPos = strchr((char*)_funcName, ' ');
 			char* stopPos = strchr((char*)_funcName, '(');
-			if (startPos != nullptr) {
-				if (stopPos != nullptr) {
+			if (startPos != null) {
+				if (stopPos != null) {
 					char* startPos2 = strchr(startPos+1, ' ');
-					while (    startPos2 != nullptr
+					while (    startPos2 != null
 					        && startPos2 < stopPos) {
 						startPos = startPos2;
 						startPos2 = strchr(startPos+1, ' ');
@@ -607,7 +607,7 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 					snprintf(tmpPointer, 1024, "%s", startPos);
 				}
 			} else {
-				if (stopPos != nullptr) {
+				if (stopPos != null) {
 					snprintf(tmpPointer, etk::min(uint64_t(1024), uint64_t(stopPos)-uint64_t(_funcName)+1), "%s", _funcName);
 				} else {
 					snprintf(tmpPointer, 1024, "%s", _funcName);
@@ -651,7 +651,7 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 		size_t& fileCurrentCount = getLogFileCount();
 		size_t& fileMaxCount = getLogFileMaxCount();
 		// close file only if needed ...
-		if (file != nullptr) {
+		if (file != null) {
 			*pointer++ = '\n';
 			*pointer = '\0';
 			fprintf(file, "%s", handle);
@@ -736,7 +736,7 @@ void elog::logChar(int32_t _id, int32_t _level, int32_t _ligne, const char* _fun
 void elog::flush() {
 	g_lock.lock();
 	FILE*& file = getLogFile();
-	if (file != nullptr) {
+	if (file != null) {
 		fflush(file);
 	}
 	fflush(stdout);
