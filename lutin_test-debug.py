@@ -32,7 +32,7 @@ def configure(target, my_module):
 	my_module.add_header_file([
 		'test-debug/debug.hpp'
 		])
-	my_module.add_depend('etk-base')
+	my_module.add_depend('etk-core')
 	my_module.add_path(".")
 	return True
 
