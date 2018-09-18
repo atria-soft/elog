@@ -9,17 +9,18 @@
 
 #include <etk/String.hpp>
 /**
- * @brief basic namespace of the elog library. (it might contain all the elog fuctions without macro)
+ * @brief basic namespace of the elog library. (it might contain all the elog fuctions without macro).
  */
 namespace elog {
 	/**
-	 * @brief Initialize elog
-	 * @param[in] _argc Number of argument list
-	 * @param[in] _argv List of arguments
+	 * @brief Initialize elog.
+	 * @param[in] _argc Number of argument list.
+	 * @param[in] _argv List of arguments.
+	 * @param[in] _applName Current application Name.
 	 */
-	void init(int _argc, const char** _argv);
+	void init(int _argc, const char** _argv, const etk::String& _applName);
 	/**
-	 * @brief Un-Initialize elog
+	 * @brief Un-Initialize elog.
 	 */
 	void unInit();
 }

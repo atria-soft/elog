@@ -66,7 +66,7 @@ void elog::unInit() {
 	ELOG_INFO("E-log system un-init (END)");
 }
 
-void elog::init(int _argc, const char** _argv) {
+void elog::init(int _argc, const char** _argv, const etk::String& _applName) {
 	if (nbTimeInit > 0) {
 		nbTimeInit++;
 		// already init
@@ -74,16 +74,6 @@ void elog::init(int _argc, const char** _argv) {
 	}
 	nbTimeInit++;
 	ELOG_INFO("E-log system init (BEGIN)");
-	// retrive application Name:
-	etk::String applName = "noApplicationName";
-	#if !defined(__TARGET_OS__Android) and !defined(__TARGET_OS__IOs)
-		if (_argc >= 1) {
-			applName = _argv[0];
-			int lastSlash = applName.rfind('/');
-			applName = &applName[lastSlash+1];
-		}
-	#endif
-	// get name: applName
 	bool userSpecifyLogFile = false;
 	for (int32_t iii=0; iii<_argc ; ++iii) {
 		etk::String data = _argv[iii];
@@ -199,12 +189,12 @@ void elog::init(int _argc, const char** _argv) {
 			#endif
 		#else
 			#if defined(__TARGET_OS__Linux)
-				//elog::setLogInFile("/var/log/elog_" +applName + ".log");
-				elog::setLogInFile("/tmp/elog_" +applName + ".log");
+				//elog::setLogInFile("/var/log/elog_" +_applName + ".log");
+				elog::setLogInFile("/tmp/elog_" +_applName + ".log");
 			#elif defined(__TARGET_OS__MacOs)
-				elog::setLogInFile(applName + ".log");
+				elog::setLogInFile(_applName + ".log");
 			#elif defined(__TARGET_OS__Windows)
-				elog::setLogInFile(applName + ".log");
+				elog::setLogInFile(_applName + ".log");
 			#endif
 		#endif
 	}
