@@ -56,7 +56,7 @@ static void myExternalLogCallback(const char* _libName, enum elog::level _level,
 //! [elog_sample_main_base]
 int main(int _argc, const char *_argv[]) {
 	// if you use etk/ewol/gale, elog init in contain in it.
-	elog::init(_argc, _argv);
+	elog::init(_argc, _argv, "appl_name");
 	//! [elog_sample_main_base]
 	//! [elog_sample_main_log]
 	APPL_VERBOSE("VERBOSE display");
